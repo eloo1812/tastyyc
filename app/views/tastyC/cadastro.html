@@ -1,0 +1,45 @@
+{% extends "tastyC/master.html" %}
+
+{% block content %}
+     <!--cadastro-->
+     <div class="signup">
+        <img src="static/imagens/logo.png">
+        <form method="POST" action="" >
+            <div class="input-field">
+                <i class="fas fa-user"></i>
+                <input type="text" name="nome" id="nome" required placeholder="Nome completo" maxlength="100">
+            </div>
+            <div class="input-field">
+                <i class="fas fa-envelope"></i>
+                <input type="email" name="email" id="email" required placeholder="Endereço de email" maxlength="100">
+            </div>
+            <div class="input-field">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="senha" id="senha" required placeholder="Insira uma senha" maxlength="65">
+            </div>
+            <input type="submit" name="submit" value="Cadastro" class="btn solid">
+            
+            <div class="admin">
+                <a href="#" class="social-text1">SOU USUÁRIO</a>
+                <a href="#" class="social-text2">SOU ADMIN</a>
+            </div>
+        </form>
+        <div class="baixo">
+            <div class="separator-container">
+                <hr class="separator2">
+                <div class="or">ou</div>
+            </div>
+            <div class="social-media">
+                <a href="#" class="social-icon">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-google"></i>
+                </a>
+            </div>
+        </div>
+
+        Meu nome é {{nome}}
+    </div>
+
+{% endblock %}
