@@ -1,0 +1,924 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap'); 
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body, html, input {
+    height: 100%;
+    width:auto;
+    /* Garante que não haja rolagem */
+    font-family: 'Nunito', sans-serif;
+}
+
+#flash_alerta{
+    font-size: 1rem;
+    color: #000;
+}
+
+
+
+
+/*log e cadastro*/
+.logo {
+    margin-right: 17vw;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5vh; 
+}
+.img-logo {
+    max-width: 100%;
+    height: auto;
+}
+.logoo {
+    margin-right: 47vw;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5vh; 
+}
+.img-logoo {
+    max-width: 100%;
+    height: auto;
+}
+
+
+.signin-signup img{
+    text-align: center;
+    margin-left: 45vw;
+    margin-top: 5vh;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: white;
+    overflow: hidden;
+}
+
+/*.forms-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}*/
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 2vh;
+}
+
+.forms{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 2vh;
+}
+
+.input-field {
+    max-width: 250px;
+    width: 100%;
+    height: 38px;
+    background-color: #fff;
+    margin: 15px 5px;
+    border: 1px solid #000;
+    border-radius: 55px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0.4rem;
+}
+
+
+.input-field i {
+    text-align: center;
+    line-height: 25px; /* Ajuste para altura igual ao campo de entrada */
+    color: #555249;
+    font-size: 1rem;
+    
+}
+
+.input-field input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    line-height: 1;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: #555249;
+    margin-bottom: 1vh;
+    margin-left: 2vw;
+    
+}
+.input-field input::placeholder{
+    color: #aaa;
+    font-weight: 500;
+    margin-top: -9vh;
+}
+.btn
+{
+    width: 95px;
+    color: #555249;
+    background-color: #fff;
+    height: 32px;
+    border: 1px solid #000;
+    outline: none;
+    border-radius: 49px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-top: 1vh;
+    
+}
+.btn:hover{
+    background-color: #5B3A56;
+    color: white;
+    border:1px solid white;
+    box-shadow: 0 5px 10px 0 rgba(106, 89, 255, 0.2);
+    transform: translate(0, -2px);
+    transition: transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
+    background-color 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
+    box-shadow 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
+    -webkit-transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  
+}
+#btn_cadastro{
+    margin-top: 3vh;
+    margin-left: 1.5vw;
+}
+#btn_login{
+    margin-top: 3vh;
+    margin-left: 1.5vw;
+}
+.separator-container {
+    position: relative;
+}
+.separator-containerr {
+    position: relative;
+    margin-top: -4vh;
+}
+
+.separator {
+    border: none;
+    border-top: 1px solid #000;
+    margin-top: 13vh;
+}
+
+.or {
+    position: absolute;
+    top: -10px; /* Ajuste conforme necessário para posicionar o "ou" corretamente */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white; /* Opcional: adiciona uma cor de fundo para o texto "ou" */
+    padding: 0 5px; /* Opcional: adiciona um espaçamento ao redor do texto "ou" */
+}
+.baixo{
+    margin-top: 5vh;
+}
+.baixoo{
+    margin-bottom: 6vh;
+}
+
+#ainda {
+    color: black; 
+    text-decoration: none; 
+    margin-left: 32vw;
+}
+
+#ainda b {
+    color: black; 
+}
+
+.social-media{
+    display: flex;
+    justify-content: center;
+    margin-top: 5vh;
+    
+}
+.social-icon{
+    height: 46px;
+    width: 46px;
+    border: 1px solid #333;
+    margin: 2vh 0.45rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.1rem;
+    border-radius: 49px;
+    color:#5B3A56
+}
+.social-icon:hover{
+    background-color: #5B3A56;
+    color: white;
+    border:1px solid white;
+    box-shadow: 0 5px 10px 0 rgba(106, 89, 255, 0.2);
+    transform: translate(0, -2px);
+    transition: transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
+    background-color 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
+    box-shadow 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
+    -webkit-transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  
+}
+
+.signup img{
+    text-align: center;
+    margin-left: 15vw;
+    margin-top: 5vh;
+}
+.social-text1{
+
+    justify-content: flex-start;
+    align-items: left;
+    text-decoration: none;
+    font-size: 0.8rem;
+    color:#5B3A56;
+    margin-right: 21vw;
+    
+}
+.social-text2{
+    text-decoration: none;
+    font-size: 0.8rem;
+    color:#5B3A56;
+    
+}
+.admin{
+    margin-top: 6vh;
+    padding: 8px;
+}
+.separator2{
+    border: none;
+    border-top: 1px solid #000;
+    margin-top: 1vh;
+    
+}
+
+
+
+/*tela landing page*/
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.section {
+    width: 100%;
+            
+}
+
+.purple {
+    background-color: #5B3A56;
+    height: 25vh;
+}
+
+.yellow {
+    background-color: #F8F4EB;
+    height: 45vh;
+}
+
+.white {
+    background-color: initial;
+}
+
+.img-thumbnail {
+    width: 250px; /* Altere o valor para o tamanho desejado */
+    height: auto; /* Mantém a proporção da imagem */
+    background-color: transparent;
+    border: none;
+    margin-left: 7vw;
+    margin-right: 4vw; /* Espaçamento à direita da imagem */
+}
+
+.content {
+    display: flex;
+    align-items: center; 
+}
+
+.text {
+    max-width: 600px; /* Largura máxima do conteúdo */
+    text-align: justify; /* Justifica o texto */
+    padding: 20px; /* Espaçamento interno */
+    margin-left: 7vw;
+    margin-bottom: 4vh;
+}
+
+.title {
+    font-weight: bold; /* Fonte em negrito */
+    font-size: 31px; /* Tamanho do título */
+    margin-bottom: 10px; /* Espaçamento abaixo do título */
+    margin-right: 30px; /* Centraliza o texto */
+    color: #572950;
+}
+
+.description {
+    font-size: 18px; /* Tamanho do texto */
+    text-align: justify; /* Justifica o texto */
+    color: #666;
+}
+.btn {
+    margin-top: 30vh;
+    margin-right: 1.5vw;
+}
+.botoess
+{
+    margin-left: -27vw;
+    margin-top: 30vh;
+}
+.btn-danger, .btn-primary{
+    background-color: #5B3A56;
+    color:#F8F4EB;
+}
+.btn-danger:hover, .btn-primary:hover{
+    background-color: #F8F4EB;
+    color:#000;
+    border: 1px solid #333;
+}
+.tasty{
+    margin-left: 10vw;
+    margin-bottom: -4vh;
+}
+
+.title-titulo{
+    color: #F8F4EB;
+    font-size: 50px;
+    margin-left: vw;
+}
+.title-tit{
+    color: #F8F4EB;
+    font-size: 25px;
+}
+.title-titu{
+    color: #572950;
+    font-size: 23px;
+    font-weight: 600;
+    margin-left: 44vw;
+    margin-top: 3vh;
+}
+.descriptionn {
+    font-size: 17px; /* Tamanho do texto */
+    text-align: justify; /* Justifica o texto */
+    margin-left: 41.5vw;
+    margin-top: -2vh;
+    color: #572950;
+    font-weight: 600;
+}
+.container-text-center{
+    margin-left: 7vw;
+}
+
+.img-pizza{
+    width: 200px; /* Altere o valor para o tamanho desejado */
+    height: auto; 
+    margin: 0 10px;
+}
+
+.container-text-center {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0; /* Ajuste o espaçamento conforme necessário */
+}
+
+.container-text-center img {
+    max-width: 100%;
+    height: auto;
+    margin: 0 45px;
+}
+
+.img-massa, .img-prato, .img-salada {
+    width: 240px;
+    height: auto;
+     /* Espaçamento horizontal entre as imagens */
+}
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap'); 
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body, html, input {
+    height: 100%;
+    width:auto;
+    /* Garante que não haja rolagem */
+    font-family: 'Nunito', sans-serif;
+}
+
+#flash_alerta{
+    font-size: 1rem;
+    color: #000;
+}
+
+
+
+
+/*log e cadastro*/
+.logo {
+    margin-right: 17vw;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5vh; 
+}
+.img-logo {
+    max-width: 100%;
+    height: auto;
+}
+.logoo {
+    margin-right: 47vw;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5vh; 
+}
+.img-logoo {
+    max-width: 100%;
+    height: auto;
+}
+
+
+.signin-signup img{
+    text-align: center;
+    margin-left: 45vw;
+    margin-top: 5vh;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: white;
+    overflow: hidden;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 2vh;
+}
+
+.forms{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 2vh;
+}
+
+.input-field {
+    max-width: 250px;
+    width: 100%;
+    height: 38px;
+    background-color: #fff;
+    margin: 15px 5px;
+    border: 1px solid #000;
+    border-radius: 55px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0.4rem;
+}
+
+
+.input-field i {
+    text-align: center;
+    line-height: 25px; /* Ajuste para altura igual ao campo de entrada */
+    color: #555249;
+    font-size: 1rem;
+    
+}
+
+.input-field input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    line-height: 1;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: #555249;
+    margin-bottom: 1vh;
+    margin-left: 2vw;
+    
+}
+.input-field input::placeholder{
+    color: #aaa;
+    font-weight: 500;
+    margin-top: -9vh;
+    margin-right: 3vw;
+}
+.btn
+{
+    width: 95px;
+    color: #555249;
+    background-color: #fff;
+    height: 32px;
+    border: 1px solid #000;
+    outline: none;
+    border-radius: 49px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-top: 1vh;
+    
+}
+.btn:hover{
+    background-color: #5B3A56;
+    color: white;
+    border:1px solid white;
+    box-shadow: 0 5px 10px 0 rgba(106, 89, 255, 0.2);
+    transform: translate(0, -2px);
+    transition: transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
+    background-color 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
+    box-shadow 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
+    -webkit-transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+
+}
+#btn_cadastro{
+    margin-top: 3vh;
+    margin-left: 1.5vw;
+}
+#btn_login{
+    margin-top: 3vh;
+    margin-left: 1.5vw;
+}
+.separator-container {
+    position: relative;
+}
+.separator-containerr {
+    position: relative;
+    margin-top: -4vh;
+}
+
+.separator {
+    border: none;
+    border-top: 1px solid #000;
+    margin-top: 13vh;
+}
+
+.or {
+    position: absolute;
+    top: -10px; /* Ajuste conforme necessário para posicionar o "ou" corretamente */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white; /* Opcional: adiciona uma cor de fundo para o texto "ou" */
+    padding: 0 5px; /* Opcional: adiciona um espaçamento ao redor do texto "ou" */
+}
+.baixo{
+    margin-top: 5vh;
+}
+.baixoo{
+    margin-bottom: 6vh;
+}
+
+#ainda {
+    color: black; 
+    text-decoration: none; 
+    margin-left: 32vw;
+}
+
+#ainda b {
+    color: black; 
+}
+
+.social-media{
+    display: flex;
+    justify-content: center;
+    margin-top: 5vh;
+    
+}
+.social-icon{
+    height: 46px;
+    width: 46px;
+    border: 1px solid #333;
+    margin: 2vh 0.45rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.1rem;
+    border-radius: 49px;
+    color:#5B3A56
+}
+.social-icon:hover{
+    background-color: #5B3A56;
+    color: white;
+    border:1px solid white;
+    box-shadow: 0 5px 10px 0 rgba(106, 89, 255, 0.2);
+    transform: translate(0, -2px);
+    transition: transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
+    background-color 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
+    box-shadow 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
+    -webkit-transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.signup img{
+    text-align: center;
+    margin-left: 15vw;
+    margin-top: 5vh;
+}
+.social-text1{
+
+    justify-content: flex-start;
+    align-items: left;
+    text-decoration: none;
+    font-size: 0.8rem;
+    color:#5B3A56;
+    margin-right: 21vw;
+    
+}
+.social-text2{
+    text-decoration: none;
+    font-size: 0.8rem;
+    color:#5B3A56;
+    
+}
+.admin{
+    margin-top: 6vh;
+    padding: 8px;
+}
+.separator2{
+    border: none;
+    border-top: 1px solid #000;
+    margin-top: 1vh;
+    
+}
+
+@media (max-width: 1200px) {
+    .logo, .logoo {
+        margin-right: 5vw;
+    }
+    
+    .signin-signup img {
+        margin-left: 30vw;
+    }
+
+    .img-thumbnail {
+        width: 200px;
+        margin-left: 5vw;
+        margin-right: 2vw;
+    }
+    
+    .container-text-center {
+        margin-left: 5vw;
+    }
+    
+    .title-titulo {
+        font-size: 40px;
+        margin-left: 5vw;
+    }
+    
+    .title-tit {
+        font-size: 20px;
+    }
+    
+    .title-titu {
+        font-size: 20px;
+        margin-left: 30vw;
+    }
+
+    .descriptionn {
+        margin-left: 30vw;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 992px) {
+    .logo, .logoo {
+        margin-right: 3vw;
+    }
+    
+    .signin-signup img {
+        margin-left: 20vw;
+    }
+
+    .img-thumbnail {
+        width: 180px;
+    }
+    
+    .container-text-center {
+        margin-left: 3vw;
+    }
+
+    .title-titulo {
+        font-size: 35px;
+    }
+
+    .title-tit {
+        font-size: 18px;
+    }
+
+    .title-titu {
+        font-size: 18px;
+        margin-left: 25vw;
+    }
+
+    .descriptionn {
+        margin-left: 25vw;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo, .logoo {
+        margin-right: 0;
+        display: block;
+        text-align: center;
+    }
+    
+    .signin-signup img {
+        margin-left: 0;
+        margin-top: 2vh;
+    }
+    .btn-danger, .btn-primary {
+        background-color: #5B3A56; /* Cor roxa */
+        color: white; /* Texto branco */
+        padding: 12px 20px; /* Ajuste o padding conforme necessário */
+        position: relative; /* Permite o uso de 'top' */
+        top: -10px; /* Ajusta a posição para cima */
+        margin-bottom: 10px; /* Espaço abaixo dos botões */
+        display: block; /* Faz com que os botões fiquem em linha vertical */
+        width: 100%; /* Ajusta a largura dos botões */
+        text-align: center; /* Centraliza o texto */
+    }
+    
+    .content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .img-thumbnail {
+        width: 100%;
+        margin: 0;
+    }
+
+    .botoess {
+        margin: 0;
+        text-align: center;
+    }
+    
+    .container-text-center {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .social-text1, .social-text2 {
+        margin-right: 0;
+        text-align: center;
+    }
+    .cont, .container-text-center {
+        display: none;
+        }
+
+    .btn-danger, .btn-primary {
+        width: 80px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .input-field {
+        max-width: 200px;
+        width: 100%;
+    }
+    
+    .title {
+        font-size: 24px;
+    }
+    .btn-danger, .btn-primary {
+        background-color: #5B3A56; /* Cor roxa */
+        color: white; /* Texto branco */
+        padding: 12px 20px; /* Ajuste o padding conforme necessário */
+        position: relative; /* Permite o uso de 'top' */
+        top: -10px; /* Ajusta a posição para cima */
+        margin-bottom: 10px; /* Espaço abaixo dos botões */
+        display: block; /* Faz com que os botões fiquem em linha vertical */
+        width: 100%; /* Ajusta a largura dos botões */
+        text-align: center; /* Centraliza o texto */
+    }
+    
+    .description {
+        font-size: 16px;
+    }
+
+    .title-titulo {
+        font-size: 36px;
+    }
+    
+    .title-tit {
+        font-size: 20px;
+    }
+    .cont, .container-text-center {
+        display: none;
+        }
+    
+    .descriptionn {
+        font-size: 14px;
+        margin-left: 0;
+        margin-top: 0;
+    }
+}
+/* Ajuste para dispositivos móveis */
+@media (max-width: 768px) {
+    .menu-hamburguer {
+      font-size: 20px; /* Tamanho menor para dispositivos móveis */
+    }
+    .btn-danger, .btn-primary {
+        background-color: #5B3A56; /* Cor roxa */
+        color: white; /* Texto branco */
+        padding: 12px 20px; /* Ajuste o padding conforme necessário */
+        position: relative; /* Permite o uso de 'top' */
+        top: -10px; /* Ajusta a posição para cima */
+        margin-bottom: 10px; /* Espaço abaixo dos botões */
+        display: block; /* Faz com que os botões fiquem em linha vertical */
+        width: 100%; /* Ajusta a largura dos botões */
+        text-align: center; /* Centraliza o texto */
+    }
+}
+@media (max-width: 768px) {
+    .container-imagens {
+      flex-direction: column; /* Coloca as imagens em uma coluna em vez de lado a lado em telas pequenas */
+      align-items: center; /* Centraliza as imagens na coluna */
+    }
+
+    .container-imagens img {
+      max-width: 100%; /* Ajusta o tamanho máximo das imagens para caber na tela */
+    }
+    .cont, .container-text-center {
+        display: none;
+    
+        }
+        
+}
+@media (max-width: 576px) {
+    .container-imagens {
+        flex-direction: column; /* Coloca as imagens em uma coluna em vez de lado a lado em telas pequenas */
+        align-items: center; /* Centraliza as imagens na coluna */
+    }
+    .btn-danger, .btn-primary {
+        background-color: #5B3A56; /* Cor roxa */
+        color: white; /* Texto branco */
+        padding: 12px 20px; /* Ajuste o padding conforme necessário */
+        position: relative; /* Permite o uso de 'top' */
+        top: -10px; /* Ajusta a posição para cima */
+        margin-bottom: 10px; /* Espaço abaixo dos botões */
+        display: block; /* Faz com que os botões fiquem em linha vertical */
+        width: 100%; /* Ajusta a largura dos botões */
+        text-align: center; /* Centraliza o texto */
+    }
+    .menu-hamburguer {
+        font-size: 20px; /* Tamanho menor para dispositivos móveis */
+    } 
+    
+    .container-imagens img {
+        max-width: 100%; /* Ajusta o tamanho máximo das imagens para caber na tela */
+    }
+    .cont, .container-text-center {
+        display: none;
+        }
+        
+
+
+}
+@media (max-width: 480px) {
+    .container-imagens {
+        flex-direction: column; /* Coloca as imagens em uma coluna em vez de lado a lado em telas pequenas */
+        align-items: center; /* Centraliza as imagens na coluna */
+    }
+    .btn-danger, .btn-primary {
+        background-color: #5B3A56; /* Cor roxa */
+        color: white; /* Texto branco */
+        padding: 12px 20px; /* Ajuste o padding conforme necessário */
+        position: relative; /* Permite o uso de 'top' */
+        top: -10px; /* Ajusta a posição para cima */
+        margin-bottom: 10px; /* Espaço abaixo dos botões */
+        display: block; /* Faz com que os botões fiquem em linha vertical */
+        width: 100%; /* Ajusta a largura dos botões */
+        text-align: center; /* Centraliza o texto */
+    }
+    .menu-hamburguer {
+        font-size: 20px; /* Tamanho menor para dispositivos móveis */
+    } 
+    
+    .container-imagens img {
+        max-width: 100%; /* Ajusta o tamanho máximo das imagens para caber na tela */
+    }
+        .cont, .container-text-center {
+        display: none;
+        }
+        
+        
+    }
+
+

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/home.css"> <!-- Adicione este link -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://kit.fontawesome.com/64d58efce2.js"></script>
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <style>
+        #map {
+            height: 40vh;
+            width: 50%;
+            margin-left: 30vw;
+            margin-top: 15vh;
+        }
+        #instructions {
+            position: fixed;
+            top: 50px;
+            left: 10px;
+            background: white;
+            padding: 10px;
+            margin-top: 5vh;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <input type="hidden" id="Endereco" value="{{restaurante.endereco}}">
+
+    <div id="map"></div>
+    <br><br><br><br><br><br><br><br>
+    <div id="instructions"><h3>Instruções:</h3><ul id="instruction-list"></ul></div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        const map = L.map('map').setView([-29.6475, -50.7853], 14);
+
+// Adiciona o tile layer do OpenStreetMap
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+// Variável global para o destino
+let destino;
+
+// Coordenadas
+const cimol = L.latLng(-29.6475, -50.7853); // Coordenadas da CIMOL
+
+const purpleIcon = L.icon({
+    iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
+    shadowSize: [41, 41]
+});
+
+// Adiciona marcadores
+L.marker(cimol).addTo(map).bindPopup('CIMOL');
+
+// OpenRouteService API
+const apiKey = '5b3ce3597851110001cf6248815cc72d4b3840cbbf8a6cf3373fdeb5'; // Substitua pela sua chave da OpenRouteService
+
+async function getRoute() {
+    if (!destino) {
+        console.log('Destino não definido');
+        return;
+    }
+
+    try {
+        const response = await fetch(`https://api.openrouteservice.org/v2/directions/foot-walking?api_key=${apiKey}&start=${cimol.lng},${cimol.lat}&end=${destino.lng},${destino.lat}`);
+        const data = await response.json();
+
+        if (data.features && data.features.length > 0) {
+            const routeCoords = data.features[0].geometry.coordinates;
+            const instructions = data.features[0].properties.segments[0].steps;
+
+            const latlngs = routeCoords.map(coord => [coord[1], coord[0]]);
+            L.polyline(latlngs, { color: 'purple' }).addTo(map);
+
+            updateInstructions(instructions); // Atualiza as instruções iniciais
+        } else {
+            console.log('Nenhuma rota encontrada');
+        }
+    } catch (error) {
+        console.error('Erro ao obter rota:', error);
+    }
+}
+
+function updateInstructions(instructions) {
+    const instructionList = document.getElementById('instruction-list');
+    instructionList.innerHTML = '';
+
+    if (!instructions || instructions.length === 0) {
+        console.log('Nenhuma instrução encontrada');
+        return;
+    }
+
+    // Suponha que você tenha a lógica para obter a posição do usuário
+    const userPosition = [userLat, userLng];
+    const closestInstruction = findClosestInstruction(userPosition, instructions);
+
+    instructions.forEach(step => {
+        let instruction = step.instruction.toLowerCase();
+
+        // Tradução das instruções
+        if (instruction.includes('turn right')) {
+            instruction = 'Vire à direita';
+        } else if (instruction.includes('turn left')) {
+            instruction = 'Vire à esquerda';
+        } else if (instruction.includes('continue straight')) {
+            instruction = 'Siga reto';
+        } else if (instruction.includes('head west')) {
+            instruction = 'Siga a esquerda';
+        } else if (instruction.includes('in 100 meters')) {
+            instruction = instruction.replace('in ', 'Em ').replace(' meters', ' metros');
+        } else if (instruction.includes('keep left')) {
+            instruction = 'Mantenha-se à esquerda';
+        } else if (instruction.includes('keep right')) {
+            instruction = 'Mantenha-se à direita';
+        } else if (instruction.includes('head')) {
+            instruction = instruction.replace('head', 'Siga').replace('on', 'em');
+        } else if (instruction.includes('arrive at')) {
+            instruction = instruction.replace('arrive at', 'Chegue em').replace('on the left', 'à esquerda');
+        } else if (instruction.includes('slight left')) {
+            instruction = 'Vire ligeiramente à esquerda';
+        } else if (instruction.includes('sharp right')) {
+            instruction = 'Vire à direita com força';
+        } else if (instruction.includes('sharp left')) {
+            instruction = 'Vire à esquerda com força';
+        } else if (instruction.includes('slight right')) {
+            instruction = 'Vire ligeiramente à direita';
+        } else if (instruction.includes('west')) {
+            instruction = 'oeste';
+        }
+
+        const street = step.street ? ` na rua ${step.street}` : '';
+        instruction += street;
+
+        if (instruction.includes(closestInstruction)) {
+            instruction = `<strong>${instruction}</strong>`;
+        }
+
+        instructionList.innerHTML += `<li>${instruction}</li>`;
+    });
+}
+
+function findClosestInstruction(position, instructions) {
+    if (!instructions || instructions.length === 0) {
+        return '';
+    }
+
+    // Implementar a lógica para encontrar a instrução mais próxima
+    // Exemplo simplificado
+    return instructions[0] ? instructions[0].instruction : ''; // Verificação adicional
+}
+
+// Função para atualizar a posição do usuário
+function updateUserPosition() {
+    if (navigator.geolocation) {
+        navigator.geolocation.watchPosition((position) => {
+            userLat = position.coords.latitude;
+            userLng = position.coords.longitude;
+            L.marker([userLat, userLng]).addTo(map).bindPopup('Você está aqui');
+            updateInstructions(instructions); // Atualiza as instruções com base na nova posição
+        });
+    } else {
+        alert('Geolocalização não é suportada por este navegador.');
+    }
+}
+
+let userLat, userLng;
+
+// Obtém o valor do input e faz a busca por coordenadas
+const inputElement = document.getElementById('Endereco');
+const address = inputElement.value;
+const encodedAddress = encodeURIComponent(address);
+
+fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodedAddress}`)
+    .then(response => response.json())
+    .then(data => {
+        if (data && data[0]) {
+            const latitude = data[0].lat;
+            const longitude = data[0].lon;
+            console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+            destino = L.latLng(latitude, longitude);
+            L.marker(destino).addTo(map).bindPopup('Destino');
+
+            // Chama getRoute após definir o destino
+            getRoute();
+        } else {
+            console.log('Nenhum resultado encontrado');
+        }
+    })
+    .catch(error => console.error('Erro ao obter coordenadas:', error));
+
+updateUserPosition();
+
+</script>
+
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="js/script.js"></script>
+
+
+</body>
+</html>

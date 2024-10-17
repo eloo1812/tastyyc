@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/home.css"> <!-- Adicione este link -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://kit.fontawesome.com/64d58efce2.js"></script>
+    <title>{{title}}</title>
+</head>
+<body>
+
+
+    <header>
+        <a href="#" class="logo"><i class="fas fa-utensils"></i> Tasty.C</a>
+        <nav class="navbar">
+            <a class="active" href="/home">Home</a>
+            <a href="/RestaurantesAll">Restaurantes</a>
+            <a href="/promo">Promocionais</a>
+            <a href="/perfil/{{user.id}}">Perfil</a>
+            {% if user_logged_data.perfil.admin %}
+                <a href="/CadastroRes">Adicionar Restaurante</a><!--aqui é so no admin-->
+                <a href="/CadastroCardapio">Adicionar Cardápio</a>
+                <a href="/CadastroTipo">Adicionar Tipo de Comida</a>
+            {% endif %}
+                <a href="/controle/{{user.id}}">Controle de Gastos</a>
+
+        </nav>
+        <div class="icons">
+            <i class="fas fa-bars" id="menu-bars"></i>
+            <i class="fas fa-search" id="search-icon"></i>
+            <a href="/favoritos/{{user.id}}" class="fas fa-heart"></a>
+            <a href="/comentarios" class="fas fa-star"></a>
+        </div>
+    </header>
+
+    <!--search-->
+
+<form action="/search" id="search-form" method="get">
+    <input type="search" name="search-box" placeholder="Busque aqui..." id="search-box">
+    <label for="search-box" class="fas fa-search"></label>
+    <i class="fas fa-times" id="close"></i>
+</form>
+
+
+    <section class="home" id="home">
+
+        <div class="swiper container home-slider">
+
+            <div class="swiper-wrapper wrapper">
+
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span>Uma opção caseira</span>
+                        <h3>Santo Grill</h3>
+                        <p>Visite o Santo Grill, o restaurante onde você pode apreciar pratos 
+                            deliciosos e bem elaborados
+                        </p>
+                        <a href="#" class="btn">Saiba mais</a>
+                    </div>
+                    <div class="image">
+                        <img src="./assets/imagens/macarrao.png" alt="prato de macarrao">
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span>Uma opção clássica</span>
+                        <h3>Oromos</h3>
+                        <p>A padaria Oromos oferece um lugar acolhedor para desfrutar de tortas caseiras
+                            e café fresco
+                        </p>
+                        <a href="#" class="btn">Saiba mais</a>
+                    </div>
+                    <div class="image">
+                        <img src="./assets/imagens/macarrao.png" alt="prato de macarrao">
+                        <!--<img src="./assets/imagens/oromosCarrossel.png" alt="prato de lasanha">COLOCAR ESSEEEE-->
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span>Uma opção popular</span>
+                        <h3>Cana Verde</h3>
+                        <p>O local ideal para saborear pastéis crocantes
+                            acompanhado de um refrescante caldo de cana
+                        </p>
+                        <a href="#" class="btn">Saiba mais</a>
+                    </div>
+                    <div class="image">
+                        <img src="./assets/imagens/macarrao.png" alt="prato de macarrao">
+                    </div>
+                </div>
+
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+    
+    <!--cartoes-->
+    <section class="dishes" id="dishes">
+        <h3 class="sub-heading">pratos especiais</h3>
+        <h1 class="heading">POPULARES</h1>
+
+        <div class="box-container">
+
+            {%for produto in produtos %}
+            <div class="box">
+                <form action="/favoritar/{{produto.idrefeicao}}/{{user.id}}" method="post">
+                    <button type="submit" class="fas fa-heart"></button>
+                </form>
+                <form action="/controle/{{produto.idrefeicao}}/{{user.id | default('0')}}" method="post"> 
+                    <button type="submit" class="fas fa-dollar-sign"></button>
+                </form>
+                
+                <img src="{{produto.tipoimg_caminho}}" alt="prato de macarrao">
+                <h3>{{produto.nome}}</h3>
+                <div class="stars">
+                    <a href="/comentarios"><i class="fas fa-star"></i></a>
+                    <a href="/comentarios"><i class="fas fa-star"></i></a>
+                    <a href="/comentarios"><i class="fas fa-star"></i></a>
+                    <a href="/comentarios"><i class="fas fa-star"></i></a>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span>{{produto.valor}}</span>
+                <a href="/produto/{{produto.idrefeicao}}" class="btn">Veja Mais</a>
+            </div>
+            {%endfor%}
+        </div>
+
+    </section>
+
+    <!--food section-->
+    <section class="food" id="food">
+        <div class="cabecinha">
+            <span>Comidas Dentro da Nossa Escola!!</span>
+            <h3>Compre no Beto!</h3>
+        </div>
+    
+        <div class="swiper food-slider">
+            <div class="swiper-wrapper">
+                {%for beto in betos %}
+                <div class="swiper-slide slide" data-name="food-1">
+                    <img src=".{{beto.tipoimg_caminho}}" alt="prato de macarrao">
+                    <h3>{{beto.nome}}</h3>
+                    <div class="price">RS{{beto.valor}}</div>
+                </div>
+                {%endfor%}         
+            </div>
+    
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <!--banner grande-->
+    <section class="about" id="about">
+        <h3 class="sub-heading">sobre nós</h3>
+        <h1 class="heading">quem somos?</h1>
+
+        <div class="row">
+            <div class="image">
+                <img src="./assets/imagens/macarrao.png" alt="prato de macarrao">
+            </div>
+            
+            <div class="content">
+                <p style="text-align: justify;">Nós, Eduarda Oliveira de Souza e Eloísa Sortica Borges, identificamos uma necessidade na Escola Técnica Estadual Monteiro Lobato: a falta de uma plataforma que facilite aos alunos encontrar e consequentemente comprar refeições próximas de forma acessível e rápida. Propomos a criação de um site que não só forneça um guia geográfico de restaurantes e lanchonetes viáveis financeiramente, mas também permita aos usuários avaliar cardápios, preços e locais. Isso ajudará a melhorar a qualidade das refeições dos alunos, reduzir gastos e facilitar a gestão alimentar dos membros da comunidade escolar.
+                </p>
+                <div class="icons-container">
+                    <div class="icons">
+                        <i class="fas fa-shipping-fast"></i>
+                        <span>Perto de você</span>
+                    </div>
+                    <div class="icons">
+                        <i class="fas fa-dollar-sign"></i>
+                        <span>Redução de gastos</span>
+                    </div>
+                    <div class="icons">
+                        <i class="fas fa-headset"></i>
+                        <span>Gerenciamento</span>
+                    </div>
+                </div>
+            </section>
+    <br><br><br><br>
+
+    <!--footer section-->
+    <section class ="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>Local</h3>
+                <a href="#">CIMOL-Rua Guilherme Lahm, 1778-Taquara/RS</a>
+            </div>
+
+            <div class="box">
+                <h3>Links Rápidos</h3>
+                <a href="#">Home</a>
+                <a href="#">Restaurantes</a>
+                <a href="#">Favoritos</a>
+                <a href="#">Perfil</a>
+            </div>
+
+            <div class="box">
+                <h3>Contatos</h3>
+                <a href="#">(51) 3542-1309</a>
+                <a href="#">eduarda-souza6@educar.rs.gov.br</a>
+                <a href="#">eloisa-sborges@educar.rs.gov.br</a>
+            </div>
+
+            <div class="box">
+                <h3>Social</h3>
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+            </div>
+        </div>
+        <div class="credit">copyright @ 2024 por <span>Borges e Souza</span></div>
+    </section>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="js/script.js"></script>
+
+
+</body>
+</html>

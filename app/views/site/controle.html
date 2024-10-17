@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/home.css"> <!-- Adicione este link -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://kit.fontawesome.com/64d58efce2.js"></script>
+    <style>
+        .img-fluid{
+            margin-top: 10vh;
+        }
+        .naotemfav{
+            font-size: x-large;
+        }
+        
+        
+
+        @media (max-width: 480px) 
+        {
+            .img-fluid{
+            width: 20px;
+            height: 20px;
+        }
+        .naotemfav{
+            font-size: large;
+        }
+        .text-center{
+            margin-top: 30vh;
+        }
+        }
+
+
+        @media (max-width: 768px) 
+        {
+            .img-fluid{
+                width: 200px;
+                height: 200px;
+                margin-top: 20vh;
+        }
+        .naotemfav{
+            font-size: large;
+        }
+        
+        }
+    </style>
+    <title>{{title}}</title>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo"><i class="fas fa-utensils"></i> Tasty.C</a>
+        <nav class="navbar">
+            <a href="/home">Home</a>
+            <a href="/RestaurantesAll">Restaurantes</a>
+            <a href="/promo">Promocionais</a>
+            <a href="/perfil/{{user.id}}">Perfil</a>
+            {% if user_logged_data.perfil.admin %}
+                <a href="/CadastroRes">Adicionar Restaurante</a><!--aqui é p por no perfil-->
+                <a href="/CadastroCardapio">Adicionar Cardápio</a>
+            {% endif %}
+                <a class="active" href="">Controle de Gastos</a>
+        </nav>
+        <div class="icons">
+            <i class="fas fa-bars" id="menu-bars"></i>
+            <i class="fas fa-search" id="search-icon"></i>
+            <a href="/favoritos/{{user.id}}" class="fas fa-heart"></a>
+            <a href="/comentarios" class="fas fa-star"></a>
+        </div>
+    </header>
+    <form action="/search" id="search-form" method="get">
+        <input type="search" name="search-box" placeholder="Busque aqui..." id="search-box">
+        <label for="search-box" class="fas fa-search"></label>
+        <i class="fas fa-times" id="close"></i>
+    </form>
+
+    
+
+
+    {% if comprados is not empty %}
+    {% for comprado in comprados %}
+    <section class="home" id="home">
+
+        <div class="swiper container home-slider">
+
+            <div class="swiper-wrapper wrapper">
+
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span>Uma opção caseira</span>
+                        <h3>Santo Grill</h3>
+                        <p>Visite o Santo Grill, o restaurante onde você pode apreciar pratos 
+                            deliciosos e bem elaborados
+                        </p>
+                        <a href="#" class="btn">Saiba mais</a>
+                    </div>
+                    <div class="image">
+                        <img src="/assets/imagens/macarrao.png" alt="prato de macarrao">
+                    </div>
+                </div>
+
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+    <div class="compra">
+        <h3><strong>Nome do Produto:</strong> {{ comprado.produto_nome }}</h3>
+        <h3>Data da Compra: {{ comprado.data }}</h3>
+        <h4><strong>Valor do Produto:</strong> R$ {{ comprado.produto_valor | number_format(2, ',', '.') }}</h4>
+        <p><strong>Descrição do Produto:</strong> {{ comprado.descricao }}</p>
+        <p><strong>Nome do Restaurante:</strong> {{ comprado.restaurante_nome }}</p>
+        <p><strong>Endereço:</strong> {{ comprado.restaurante_endereco }}</p>
+
+        <form action="/controle/delete/{{ comprado.idgasto }}" method="POST">
+            <input type="hidden" name="_METHOD" value="DELETE">
+            <button type="submit" class="btn btn">Comprei sem querer</button>
+        </form>
+        <br><br>
+    </div>
+    <section class="gastos">
+        <h2>Total de Gastos</h2>
+        <p><strong>Total do Dia:</strong> R$ {{ totalDia | number_format(2, ',', '.') }}</p>
+        <p><strong>Total da Semana:</strong> {{ totalSemana }}</p>
+        <p><strong>Total do Mês:</strong> {{ totalMes }}</p>
+        <p><strong>Total do Ano:</strong> {{ totalAno }}</p>
+    </section>
+    
+    {% endfor %}
+{% else %}
+    <div class="text-center my-5">
+        <img src="/assets/imagens/naotemfav.png" class="img-fluid" alt="Nenhum favorito">
+        <p class="naotemfav">Você ainda não adicionou nada aos seus itens de compra!</p>
+    </div>
+{% endif %}
+
+    
+
+</body>
+</html>

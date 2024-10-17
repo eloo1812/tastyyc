@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPÇÕES RESTAURANTES</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+:root {
+    --dark-bg: rgba(0,0,0,.7);
+    --black: #200d20;
+    --white:#fff;
+    --light-color: #666;
+    --light-white:#ccc;
+    --light-bg:#f5f5f5;
+    --box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .1);
+}
+
+* {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    transition: all .2s linear;
+}
+
+html {
+    font-size: 62.5%;
+    scroll-padding-top: 5.5rem;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+section{
+    padding: 2rem 9%;
+}
+
+section:nth-child(even){
+    background: #eee;
+}
+
+.btn{
+    margin-top: 1rem;
+    display: inline-block;
+    font-size: 2rem;
+    color:#fff;
+    background: var(--black);
+    border-radius: 2rem;
+    cursor: pointer;
+    padding: 1rem 3rem;
+}
+
+.btn:hover{
+    background: #572950;
+    letter-spacing: .2rem;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 1rem 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    box-shadow: var(--box-shadow);
+}
+
+header .logo {
+    color: var(--black);
+    font-size: 2.5rem;
+    font-weight: bolder;
+}
+
+header .logo i {
+    color: #572950;
+}
+
+header .navbar {
+    display: flex;
+    gap: 2rem;
+}
+
+header .navbar a {
+    font-size: 1.7rem;
+    border-radius: .3rem;
+    padding: .7rem 1.5rem;
+    color: var(--light-color);
+}
+
+header .navbar a.active,
+header .navbar a:hover {
+    color: #fff;
+    background: #572950;
+    border-radius: 3rem;
+}
+
+header .icons {
+    display: flex;
+    gap: .5rem;
+}
+
+header .icons i,
+header .icons a {
+    cursor: pointer;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    width: 4.5rem;
+    text-align: center;
+    font-size: 1.7rem;
+    color: var(--black);
+    border-radius: 50%;
+    background: #eee;
+}
+
+header .icons i:hover,
+header .icons a:hover {
+    color: #fff;
+    background: #572950;
+    transform: rotate(360deg);
+}
+
+header .icons #menu-bars {
+    display: none;
+}
+
+#search-form{
+    position: fixed;
+    top:-110%; left:0;
+    height: 100%; width: 100%;
+    z-index:1004;
+    background: rgba(0, 0, 0, .8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+}
+
+#search-form.active{
+    top:0;
+}
+
+#search-form #search-box{
+    width: 50rem;
+    border-bottom: .1rem solid #fff;
+    padding: 1rem 0;
+    color:#fff;
+    font-size: 3rem;
+    text-transform: none;
+    background: none;
+}
+
+#search-form #search-box::placeholder{
+    color:#eee;
+
+}
+
+#search-form #search-box::-webkit-search-cancel-button{
+    -webkit-appearance: none;
+
+}
+
+#search-form label{
+    color:#fff;
+    cursor: pointer;
+    font-size: 3rem;
+}
+
+#search-form label:hover{
+    color:#AB70A2;
+}
+
+#search-form #close{
+    position: absolute;
+    color:#fff;
+    cursor: pointer;
+    top: 2rem; right: 3rem;
+    font-size: 5rem;
+}
+
+.opcoes{
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.opcoes .elementos{
+    max-width: 50rem;
+}
+
+.opcoes .elementos h3{
+    font-size: 7rem;
+    color:#200d20;
+}
+
+.opcoes .elementos span{
+    font-size: 2.5rem;
+    color:#572950;
+    padding: 1rem 0;
+    line-height: 1.5;
+}
+
+.opcoes .elementos p{
+    font-size: 2rem;
+    color:var(--light-color);
+    padding: 1rem 0;
+    line-height: 1.5;
+}
+
+.headingue{
+    text-align: center;
+    font-size: 3.5rem;
+    color:#200d20;
+    padding: 1rem;
+    margin: 2rem 0;
+}
+
+.headingue span{
+    color:#572950;
+}
+
+
+
+
+.locais .box-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.locais .box-container .box {
+    flex:1 1 30rem; /* 25% menos o espaço do gap / / Altura fixa para manter proporção */
+    box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .1);
+    border-radius: .5rem;
+    border: .1rem solid rgba(0, 0, 0, .1);
+    position: relative;
+}
+
+.locais .box-container .box .imagee{
+    position: relative;
+    text-align: center;
+    padding-top: 2rem;
+    overflow: hidden;
+}
+
+.locais .box-container .box .imagee img {
+    height: 17rem;
+}
+
+.locais .box-container .box:hover .imagee img{
+    transform: scale(1.1);
+}
+
+.locais .box-container .box .imagee .icons{
+    position:absolute;
+    bottom:-7rem;
+    left:0;
+    right:0;
+    display:flex;
+}
+
+.locais .box-container .box:hover .imagee .icons{
+    bottom: 0;
+}
+
+.locais .box-container .box .imagee .icons a{
+    height: 5rem;
+    line-height: 5rem;
+    font-size: 2rem;
+    width: 50%;
+    background: #200d20;
+    color:#fff;
+}
+
+.locais .box-container .box .imagee .icons .cart-btn{
+    border-left: .1rem solid #AB70A2;
+    border-left: .1rem solid #AB70A2;
+    width: 100%;
+}
+
+.locais .box-container .box .imagee .icons a:hover{
+    background: #AB70A2;
+}
+
+.locais .box-container .box .content{
+    padding: 2rem;
+    text-align: center;
+}
+
+.locais .box-container .box .content h3{
+    font-size: 2.5rem;
+    color:#200d20;
+}
+
+.locais .box-container .box .content .blabla{
+    font-size: 2.5rem;
+    color:#572950;
+    font-weight: bolder;
+    padding-top: 1rem;
+    overflow: hidden; /* Esconde qualquer conteúdo que ultrapasse as bordas do bloco */
+    text-overflow: ellipsis; /* Adiciona "..." ao final do texto se ele for muito longo */
+    max-width: 100%; /* Garante que o preço não ultrapasse a largura do bloco */
+}
+
+
+
+
+
+.footer .box-container {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap:1.5rem;
+}
+
+.footer .box-container .box h3 {
+    padding: .5rem 0;
+    font-size: 2.5rem;
+    color: var(--black);
+}
+
+.footer .box-container .box a {
+    display: block;
+    padding: .5rem 0;
+    font-size: 1.5rem;
+    color: var(--light-color);
+}
+
+.footer .box-container .box a:hover {
+    color:#AB70A2;
+    text-decoration: underline;
+}
+
+.footer .credit {
+    text-align: center;
+    border-top: .1rem solid rgba(0, 0, 0, .1);
+    font-size: 1.8rem;
+    color:var(--black);
+    padding: .5rem;
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.footer .credit span {
+    color:#572950;
+}
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+    html {
+        font-size: 50%;
+    }
+    header {
+        padding: 1rem 5%;
+    }
+
+    section {
+        padding: 2rem;
+    }
+
+    header .navbar {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
+        box-shadow: var(--box-shadow);
+    }
+    header .navbar a {
+        padding: 1rem;
+        font-size: 1.6rem;
+    }
+
+    #search-form #search-box{
+        width: 90%;
+        margin: 0 1rem;
+    }
+
+    header .navbar.active {
+        display: flex;
+    }
+    header .icons #menu-bars {
+        display: inline-block;
+    }
+
+    .opcoes .elementos h3{
+        font-size: 5rem;
+    }
+
+    .opcoes .elementos span{
+        font-size: 2.5rem;
+    }
+
+    .box .content h3 {
+        font-size: 1.8rem; /* Reduz o tamanho da fonte em tablets */
+    }
+
+    .box .content .blabla {
+        font-size: 1.4rem; /* Reduz o tamanho da fonte em tablets */
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 45%;
+    }
+
+    header .icons i,
+    header .icons a {
+        height: 3.5rem;
+        line-height: 3.5rem;
+        width: 3.5rem;
+        font-size: 1.5rem;
+    }
+
+    .box .content h3 {
+        font-size: 1.6rem; /* Reduz ainda mais o tamanho da fonte em dispositivos móveis */
+    }
+
+    .box .content .blabla {
+        font-size: 1.2rem; /* Reduz o tamanho da fonte em dispositivos móveis */
+        max-width: 100%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 992px) {
+    .locais .box-container .box {
+        width: calc(33.33% - 1.5rem); /* 3 por linha */
+        height: 300px; /* Ajuste da altura para telas menores */
+    }
+}
+
+@media (max-width: 768px) {
+    .locais .box-container .box {
+        width: calc(50% - 1.5rem); /* 2 por linha */
+        height: 250px; /* Ajuste da altura para telas menores */
+    }
+}
+
+@media (max-width: 576px) {
+    .locais .box-container .box {
+        width: 100%; /* 1 por linha */
+        height: 200px; /* Ajuste da altura para telas menores */
+    }
+}
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="#" class="logo"><i class="fas fa-utensils"></i> Tasty.C</a>
+        <nav class="navbar">
+            <a href="/home">Home</a>
+            <a class="active" href="/RestaurantesAll">Restaurantes</a>
+            <a href="/promo">Promocionais</a>
+            <a href="/perfil/{{user.id}}">Perfil</a>
+            {% if user_logged_data.perfil.admin %}
+                <a href="/CadastroRes">Adicionar Restaurante</a><!--aqui é so no admin-->
+                <a href="/CadastroCardapio">Adicionar Cardápio</a>
+            {% endif %}
+                <a href="/controle/{{user.id}}">Controle de Gastos</a>
+                
+
+        </nav>
+        <div class="icons">
+            <i class="fas fa-bars" id="menu-bars"></i>
+            <i class="fas fa-search" id="search-icon"></i>
+            <a href="/favoritos/{{user.id}}" class="fas fa-heart"></a>
+            <a href="/comentarios" class="fas fa-star"></a>
+        </div>
+    </header>
+
+    <!--search-->
+    <form action="/search" id="search-form" method="get">
+        <input type="search" name="search-box" placeholder="Busque aqui..." id="search-box">
+        <label for="search-box" class="fas fa-search"></label>
+        <i class="fas fa-times" id="close"></i>
+    </form>
+
+    <body>
+
+        <section class="opcoes">
+            <div class="elementos">
+                <h3>Restaurantes</h3>
+                <span>Perto de você!</span>
+                <p>Explore os restaurantes próximos e garanta sua refeição favorita a poucos cliques de distância.</p>
+            </div>
+        </section>
+
+        <section class="locais" id="locais">
+
+            <h1 class="headingue"> Selecione e <span>Aproveite</span></h1>
+
+            <div class="box-container">
+
+                {% for restaurante in restaurantes %}
+                    <div class="box">
+                        <div class="imagee">
+                            <img src="{{restaurante.caminho}}" alt="">
+                            <div class="icons">
+                                <a href="/Restaurantes/{{restaurante.idrestaurante}}" class="cart-btn">ver mais</a>
+                                <a href="/chegar/{{restaurante.idrestaurante}}" class="fas fa-share"></a>
+                            </div>
+                        </div>
+
+
+                        <div class="content">
+                            <h3>{{restaurante.nome}}</h3>
+                            <div class="blabla">{{restaurante.endereco}}</div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                
+        </section>
+
+    <!--footer section-->
+    <section class ="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>Local</h3>
+                <a href="#">CIMOL-Rua Guilherme Lahm, 1778-Taquara/RS</a>
+            </div>
+
+            <div class="box">
+                <h3>Links Rápidos</h3>
+                <a href="#">Home</a>
+                <a href="#">Restaurantes</a>
+                <a href="#">Favoritos</a>
+                <a href="#">Perfil</a>
+            </div>
+
+            <div class="box">
+                <h3>Contatos</h3>
+                <a href="#">(51) 3542-1309</a>
+                <a href="#">eduarda-souza6@educar.rs.gov.br</a>
+                <a href="#">eloisa-sborges@educar.rs.gov.br</a>
+            </div>
+
+            <div class="box">
+                <h3>Social</h3>
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+            </div>
+        </div>
+        <div class="credit">copyright @ 2024 por <span>Borges e Souza</span></div>
+    </section>
+    
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const menuBars = document.getElementById('menu-bars');
+    const navbar = document.querySelector('.navbar');
+
+    menuBars.addEventListener('click', function () {
+        navbar.classList.toggle('active');
+    });
+});
+
+window.onscroll = () =>{
+    menubar.classList.remove('fa-times');
+    navbar.classList.remove('active');
+}
+
+document.querySelector('#search-icon').onclick = () =>{
+    document.querySelector('#search-form').classList.toggle('active');
+}
+
+document.querySelector('#close').onclick = () =>{
+    document.querySelector('#search-form').classList.remove('active');
+}
+    </script>
+</body>
+</html>

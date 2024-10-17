@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    background-color: white;
+    overflow: hidden;
+    position: relative;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+    width: 100%;
+    margin-right: 10vw;
+}
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.back-button a {
+    color: #6c1b92;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.header .promo {
+    font-size: 44px;
+    margin-bottom: 0;
+}
+
+.header .cimol {
+    font-size: 40px;
+    margin-top: 0;
+    margin-left: 20vw;
+}
+
+.header h1 span {
+    color: #6c1b92;
+}
+
+
+.promo-text {
+    background: white;
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    position: relative;
+    z-index: 10;
+}
+
+.promo-text a {
+    color: #6c1b92;
+    text-decoration: none;
+}
+
+.dish {
+    position: absolute;
+    width: 140px; /* Adjust the size */
+    height: 140px; /* Adjust the size */
+    border-radius: 50%;
+    transition: transform 0.1s;
+}
+
+
+.dishes {
+    position: absolute;
+    width: 400px; /* Ajuste a largura */
+    height: 400px; /* Ajuste a altura */
+    touch-action: none;
+    left: 50%; /* Centralize horizontalmente */
+    top: 70%; /* Mova para baixo */
+    transform: translateX(-50%) translateY(-50%); /* Centralize horizontal e verticalmente */
+}
+
+.promo-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Mude para coluna */
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Ajuste a altura para ocupar o espaço disponível */
+}
+
+.promo-text {
+    background: white;
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    position: relative;
+    z-index: 10;
+    margin-bottom: 20px; /* Adicione margem inferior para separar do carrossel */
+}
+
+.content {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column; /* Mude para coluna */
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+
+@media (max-width: 768px) {
+    .header .promo {
+        font-size: 34px;
+        margin-bottom: 0;
+    }
+
+    .header .cimol {
+        font-size: 30px;
+        margin-top: 0;
+        margin-left: 20vw;
+    }
+
+    .header {
+        margin-left: 2vw;
+    }
+
+    .dishes {
+        width: 300px; /* Adjust the width for smaller screens */
+        height: 300px; /* Adjust the height for smaller screens */
+    }
+
+    .dish {
+        width: 100px; /* Adjust the size for smaller screens */
+        height: 100px; /* Adjust the size for smaller screens */
+    }
+}

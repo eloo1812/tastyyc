@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="/public/assets/promo.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://kit.fontawesome.com/64d58efce2.js"></script>
+    <title>{{title}}</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 100vh;
+            background-color: white;
+            overflow: hidden;
+            position: relative;
+        }
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+            width: 100%;
+            margin-right: 10vw;
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .back-button a {
+            color: #6c1b92;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .header .promo {
+            font-size: 44px;
+            margin-bottom: 0;
+        }
+        .header .cimol {
+            font-size: 40px;
+            margin-top: 0;
+            margin-left: 20vw;
+        }
+        .header h1 span {
+            color: #6c1b92;
+        }
+        .promo-text {
+            background: white;
+            padding: 10px;
+            border-radius: 30px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            position: relative;
+            z-index: 10;
+        }
+        .promo-text a {
+            color: #6c1b92;
+            text-decoration: none;
+        }
+        .dish {
+            position: absolute;
+            width: 140px; /* Adjust the size */
+            height: 140px; /* Adjust the size */
+            border-radius: 50%;
+            transition: transform 0.1s;
+        }
+        .dish1{
+            width: 160px;
+            height: 160px;
+        }
+        .dish2{
+            width: 180px;
+            height: 160px;
+        }
+        .dish4{
+            width: 220px;
+            height: 170px;
+        }
+        .dish5{
+            width: 150px;
+            height: 150px;
+        }
+        .dish3{
+            width: 180px;
+            height: 160px;
+        }
+        .dishes {
+            position: absolute;
+            width: 400px; /* Ajuste a largura para a área de visualização */
+            height: 400px; /* Ajuste a altura para a área de visualização */
+            left: 20%; /* Mova para a esquerda */
+            top: 70%; /* Mova para baixo */
+            transform: translateX(-50%) translateY(-50%); /* Centralize horizontal e verticalmente */
+        }
+        .promo-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column; /* Mude para coluna */
+            align-items: center;
+            justify-content: center;
+            height: 100%; /* Ajuste a altura para ocupar o espaço disponível */
+        }
+        .promo-text {
+            background: white;
+            padding: 10px;
+            border-radius: 30px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            position: relative;
+            z-index: 10;
+            margin-bottom: 20px; /* Adicione margem inferior para separar do carrossel */
+        }
+        .content {
+            position: relative;
+            width: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column; /* Mude para coluna */
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        @media (max-width: 768px) {
+            .header .promo {
+                font-size: 34px;
+                margin-bottom: 0;
+            }
+            .header .cimol {
+                font-size: 30px;
+                margin-top: 0;
+                margin-left: 20vw;
+            }
+            .header {
+                margin-left: 2vw;
+            }
+            .dishes {
+                width: 300px; /* Adjust the width for smaller screens */
+                height: 300px; /* Adjust the height for smaller screens */
+            }
+
+            .dish {
+                width: 130px; /* Adjust the size for smaller screens */
+                height: 130px; /* Adjust the size for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-button btn btn-link text-dark"><a href="/home"><i class="fas fa-chevron-left"></i></a></button>
+        <div class="header text-center">
+            <h1 class="promo mb-0">Promocionais</h1>
+            <h1 class="cimol mb-0">para o <span>CIMOL</span></h1>
+        </div>
+        <div class="content text-center mt-4">
+            <div class="promo-wrapper">
+                <div class="promo-text">
+                    <a href="/promo2">Confira os restaurantes com promoções</a>
+                </div>
+                <div class="dishes">
+                    <img src="./assets/imagens/salada.png" class="dish dish1" alt=" prato de salada"> 
+                    <img src="./assets/imagens/prato.png" class="dish dish2" alt="prato de comida">
+                    <img src="./assets/imagens/massa.png" class="dish dish3" alt="prato de macarrao1">
+                    <img src="./assets/imagens/macarrao.png" class="dish dish4" alt="prato de macarrao2">
+                    <img src="./assets/imagens/pizza.png" class="dish dish5" alt="imagem de uma pizza">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        //tela promo
+        document.addEventListener('DOMContentLoaded', () => {
+            const dishes = document.querySelectorAll('.dish');
+            let radius = 193; // Default radius
+
+            // Check screen width and adjust radius for smaller screens
+            if (window.innerWidth <= 768) {
+                radius = 150; // Adjusted radius for smaller screens
+            }
+
+            const angleStep = 360 / dishes.length; // Calculate the angle step based on the number of dishes
+            let angle = 0;
+
+            // Function to update dish positions
+            const updateDishPositions = (angle) => {
+                dishes.forEach((dish, index) => {
+                    const dishAngle = angle + (index * angleStep);
+                    const radian = dishAngle * (Math.PI / 180);
+                    const x = radius * Math.cos(radian);
+                    const y = radius * Math.sin(radian);
+                    dish.style.transform = `translate(${x}px, ${y}px)`;
+                });
+            };
+
+            // Initial position update
+            updateDishPositions(angle);
+
+            // Handle touch events
+            let startY = 0;
+
+            const handleTouchStart = (e) => {
+                startY = e.touches[0].clientY;
+            };
+
+            const handleTouchMove = (e) => {
+                const moveY = e.touches[0].clientY;
+                const diff = startY - moveY;
+                angle += diff * 0.1;
+                updateDishPositions(angle);
+                startY = moveY;
+            };
+
+            document.querySelector('.dishes').addEventListener('touchstart', handleTouchStart);
+            document.querySelector('.dishes').addEventListener('touchmove', handleTouchMove);
+
+            // Handle mouse events
+            let startMouseY = 0;
+            let isDragging = false;
+
+            const handleMouseDown = (e) => {
+                startMouseY = e.clientY;
+                isDragging = true;
+            };
+
+            const handleMouseMove = (e) => {
+                if (!isDragging) return;
+                const moveY = e.clientY;
+                const diff = startMouseY - moveY;
+                angle += diff * 0.1;
+                updateDishPositions(angle);
+                startMouseY = moveY;
+            };
+
+            const handleMouseUp = () => {
+                isDragging = false;
+            };
+
+            document.querySelector('.dishes').addEventListener('mousedown', handleMouseDown);
+            document.addEventListener('mousemove', handleMouseMove);
+            document.addEventListener('mouseup', handleMouseUp);
+        });
+
+    </script>
+</body>
+</html>
