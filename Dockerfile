@@ -5,8 +5,9 @@ FROM php:8.0-apache
 RUN apt-get update && apt-get install -y \
     libpng-dev libjpeg-dev libfreetype6-dev \
     git \
+    libmysqlclient-dev \  # Necessário para o MySQL
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd
+    && docker-php-ext-install gd pdo pdo_mysql  # Instalando as extensões pdo_mysql
 
 # Habilitar mod_rewrite do Apache
 RUN a2enmod rewrite
