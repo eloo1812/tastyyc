@@ -16,7 +16,8 @@ class Connection extends Base
 
         try {
 
-            static::$pdo = new PDO('mysql:host=localhost;dbname=projeto', 'root', '', [
+            
+                static::$pdo = new PDO('mysql:host=mysql.infocimol.com.br;dbname=infocimol18', 'infocimol18', 'tastyc1234', [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
             ]);
