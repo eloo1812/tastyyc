@@ -27,4 +27,4 @@ $app->map(['GET', 'POST', 'DELETE', 'PATCH', 'PUT'], '/{routes:.+}', function ($
     return $response;
 });
 
-$app->run(new \Slim\Http\Request($app->getContainer(), 'GET', '0.0.0.0:8080'));
+$app->run();
