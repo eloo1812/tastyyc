@@ -15,6 +15,7 @@ class Favoritos extends Base {
         $this->favoritos = new FavoritosModel;
         $this->produto = new Cardapio;
     }
+    
 
     public function index($request, $response, $args) {
         $id = $args['id'];
@@ -41,6 +42,12 @@ class Favoritos extends Base {
         $idProd = $args['idrefeicao'];
         $idUser = $args['idUser'];
 
+        if ($this->favoritos->findBy('idrefeicao', $idProd)) {
+            Flash::set('message', 'Este produto já está nos favoritos', 'danger');
+            return \app\helpers\redirect($response, '/home');
+        }
+    
+
         $this->validate->exist($this->favoritos, 'idrefeicao', $idProd);
         $errors = $this->validate->getErrors();
 
@@ -49,6 +56,8 @@ class Favoritos extends Base {
             Flash::flashes($errors);
             return \app\helpers\redirect($response, '/home');
         }
+
+        
 
         $created = $this->favoritos->create(['usuarios_id' => $idUser, 'idrefeicao' => $idProd]);
     

@@ -3,10 +3,12 @@ namespace app\traits;
 
 use PDO;
 use PDOException;
+use app\database\models\Connection;
 use app\traits\Connection as Connect;
 
 trait Read
 {
+    
     public function find($fetchAll = true)
     {
         try {

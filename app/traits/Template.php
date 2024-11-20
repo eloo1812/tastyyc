@@ -5,9 +5,11 @@ use Exception;
 use Slim\Views\Twig;
 use app\classes\TwigGlobal;
 use app\classes\TwigFilters;
+use app\database\models\Connection;
 
 trait Template
 {
+   
     public function getTwig(){
         try {
             $twig = Twig::create(DIR_VIEWS); //, ['cache' => 'path/to/cache']);

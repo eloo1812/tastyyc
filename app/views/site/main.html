@@ -14,31 +14,29 @@
 <body>
 
 
-    <header>
-        <a href="#" class="logo"><i class="fas fa-utensils"></i> Tasty.C</a>
-        <nav class="navbar">
-            <a class="active" href="/home">Home</a>
-            <a href="/RestaurantesAll">Restaurantes</a>
-            <a href="/promo">Promocionais</a>
-            <a href="/perfil/{{user.id}}">Perfil</a>
-            {% if user_logged_data.perfil.admin %}
-                <a href="/CadastroRes">Adicionar Restaurante</a><!--aqui é so no admin-->
-                <a href="/CadastroCardapio">Adicionar Cardápio</a>
-                <a href="/CadastroTipo">Adicionar Tipo de Comida</a>
-            {% endif %}
-                <a href="/controle/{{user.id}}">Controle de Gastos</a>
+    <header style="display: flex; align-items: center; justify-content: space-between; padding: 0 20px;">
+    <a href="#" class="logo" style="display: flex; align-items: center;"><i class="fas fa-utensils"></i> Tasty.C</a>
+    <nav class="navbar" style="display: flex; gap: 15px;">
+        <a class="active" href="/home">Home</a>
+        <a href="/RestaurantesAll">Restaurantes</a>
+        <a href="/promo">Promocionais</a>
+        <a href="/perfil/{{user.id}}">Perfil</a>
+        {% if user_logged_data.perfil.admin %}
+            <a href="/CadastroRes">add restaurante</a>
+            <a href="/CadastroCardapio">add cardapio</a>
+            <a href="/CadastroTipo">Adicionar Tipo de Comida</a>
+        {% endif %}
+        <a href="/controle/{{user.id}}">Controle de Gastos</a>
+    </nav>
+    <div class="icons" style="display: flex; gap: 10px;">
+        <i class="fas fa-bars" id="menu-bars"></i>
+        <i class="fas fa-search" id="search-icon"></i>
+        <a href="/favoritos/{{user.id}}" class="fas fa-heart"></a>
+        <a href="/comentarios" class="fas fa-star"></a>
+    </div>
+</header>
 
-        </nav>
-        <div class="icons">
-            <i class="fas fa-bars" id="menu-bars"></i>
-            <i class="fas fa-search" id="search-icon"></i>
-            <a href="/favoritos/{{user.id}}" class="fas fa-heart"></a>
-            <a href="/comentarios" class="fas fa-star"></a>
-        </div>
-    </header>
-
-    <!--search-->
-
+<!--search-->
 <form action="/search" id="search-form" method="get">
     <input type="search" name="search-box" placeholder="Busque aqui..." id="search-box">
     <label for="search-box" class="fas fa-search"></label>
@@ -76,7 +74,7 @@
                         <a href="#" class="btn">Saiba mais</a>
                     </div>
                     <div class="image">
-                        <img src="./assets/imagens/macarrao.png" alt="prato de macarrao">
+                        <img src="./assets/imagens/oromes.jpg" alt="prato de macarrao">
                         <!--<img src="./assets/imagens/oromosCarrossel.png" alt="prato de lasanha">COLOCAR ESSEEEE-->
                     </div>
                 </div>
@@ -91,7 +89,7 @@
                         <a href="#" class="btn">Saiba mais</a>
                     </div>
                     <div class="image">
-                        <img src="./assets/imagens/macarrao.png" alt="prato de macarrao">
+                        <img src="./assets/imagens/cana.jpg" alt="prato de macarrao">
                     </div>
                 </div>
 
@@ -162,7 +160,7 @@
 
         <div class="row">
             <div class="image">
-                <img src="./assets/imagens/macarrao.png" alt="prato de macarrao">
+                <img src="./assets/imagens/bolos.png" alt="prato de macarrao">
             </div>
             
             <div class="content">

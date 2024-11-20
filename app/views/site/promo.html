@@ -5,260 +5,603 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="/public/assets/promo.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://kit.fontawesome.com/64d58efce2.js"></script>
     <title>{{title}}</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            height: 100vh;
-            background-color: white;
-            overflow: hidden;
-            position: relative;
-        }
-        .header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px 0;
-            width: 100%;
-            margin-right: 10vw;
-        }
-        .back-button {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-        }
-        .back-button a {
-            color: #6c1b92;
-        }
-        .header h1 {
-            margin: 0;
-        }
-        .header .promo {
-            font-size: 44px;
-            margin-bottom: 0;
-        }
-        .header .cimol {
-            font-size: 40px;
-            margin-top: 0;
-            margin-left: 20vw;
-        }
-        .header h1 span {
-            color: #6c1b92;
-        }
-        .promo-text {
-            background: white;
-            padding: 10px;
-            border-radius: 30px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            text-decoration: none;
-            position: relative;
-            z-index: 10;
-        }
-        .promo-text a {
-            color: #6c1b92;
-            text-decoration: none;
-        }
-        .dish {
-            position: absolute;
-            width: 140px; /* Adjust the size */
-            height: 140px; /* Adjust the size */
-            border-radius: 50%;
-            transition: transform 0.1s;
-        }
-        .dish1{
-            width: 160px;
-            height: 160px;
-        }
-        .dish2{
-            width: 180px;
-            height: 160px;
-        }
-        .dish4{
-            width: 220px;
-            height: 170px;
-        }
-        .dish5{
-            width: 150px;
-            height: 150px;
-        }
-        .dish3{
-            width: 180px;
-            height: 160px;
-        }
-        .dishes {
-            position: absolute;
-            width: 400px; /* Ajuste a largura para a área de visualização */
-            height: 400px; /* Ajuste a altura para a área de visualização */
-            left: 20%; /* Mova para a esquerda */
-            top: 70%; /* Mova para baixo */
-            transform: translateX(-50%) translateY(-50%); /* Centralize horizontal e verticalmente */
-        }
-        .promo-wrapper {
-            position: relative;
-            display: flex;
-            flex-direction: column; /* Mude para coluna */
-            align-items: center;
-            justify-content: center;
-            height: 100%; /* Ajuste a altura para ocupar o espaço disponível */
-        }
-        .promo-text {
-            background: white;
-            padding: 10px;
-            border-radius: 30px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            text-decoration: none;
-            position: relative;
-            z-index: 10;
-            margin-bottom: 20px; /* Adicione margem inferior para separar do carrossel */
-        }
-        .content {
-            position: relative;
-            width: 100%;
-            flex: 1;
-            display: flex;
-            flex-direction: column; /* Mude para coluna */
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-        @media (max-width: 768px) {
-            .header .promo {
-                font-size: 34px;
-                margin-bottom: 0;
-            }
-            .header .cimol {
-                font-size: 30px;
-                margin-top: 0;
-                margin-left: 20vw;
-            }
-            .header {
-                margin-left: 2vw;
-            }
-            .dishes {
-                width: 300px; /* Adjust the width for smaller screens */
-                height: 300px; /* Adjust the height for smaller screens */
-            }
 
-            .dish {
-                width: 130px; /* Adjust the size for smaller screens */
-                height: 130px; /* Adjust the size for smaller screens */
-            }
-        }
+* {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    transition: all 0.2s linear;
+}
+
+html {
+    font-size: 62.5%;
+    scroll-padding-top: 5.5rem;
+    scroll-behavior: smooth;
+}
+
+section {
+    padding: 2rem 9%;
+}
+
+body {
+    background-color: #fff;
+    color: #333;
+    animation: fadeInBody 1.5s ease-in-out;
+    font-size: x-large;
+}
+
+@keyframes fadeInBody {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 1rem 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    text-decoration: none;
+
+    box-shadow: var(--box-shadow);
+}
+
+header .logo {
+    color: var(--black);
+    font-size: 2.5rem;
+    text-decoration: none;
+
+    font-weight: bolder;
+}
+
+header .logo i {
+    color: #572950;
+    text-decoration: none;
+
+}
+
+header .navbar {
+    display: flex;
+    text-decoration: none;
+
+    gap: 2rem;
+}
+
+header .navbar a {
+    font-size: 1.7rem;
+    border-radius: .3rem;
+    padding: .7rem 1.5rem;
+    text-decoration: none;
+
+    color: var(--light-color);
+}
+
+header .navbar a.active,
+header .navbar a:hover {
+    color: #fff;
+    background: #572950;
+    border-radius: 3rem;
+    text-decoration: none;
+
+}
+
+header .icons {
+    display: flex;
+    gap: .5rem;
+    text-decoration: none;
+
+}
+
+header .icons i,
+header .icons a {
+    cursor: pointer;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    width: 4.5rem;
+    text-align: center;
+    font-size: 1.7rem;
+    color: var(--black);
+    border-radius: 50%;
+    background: #eee;
+    text-decoration: none;
+
+}
+
+header .icons i:hover,
+header .icons a:hover {
+    color: #fff;
+    background: #572950;
+    transform: rotate(360deg);
+    text-decoration: none;
+}
+
+header .icons #menu-bars {
+    display: none;
+    text-decoration: none;
+
+}
+
+#search-form{
+    position: fixed;
+    top:-110%; left:0;
+    height: 100%; width: 100%;
+    z-index:1004;
+    background: rgba(0, 0, 0, .8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+}
+
+#search-form.active{
+    top:0;
+}
+
+#search-form #search-box{
+    width: 50rem;
+    border-bottom: .1rem solid #fff;
+    padding: 1rem 0;
+    color:#fff;
+    font-size: 3rem;
+    text-transform: none;
+    background: none;
+}
+
+#search-form #search-box::placeholder{
+    color:#eee;
+
+}
+
+#search-form #search-box::-webkit-search-cancel-button{
+    -webkit-appearance: none;
+
+}
+
+#search-form label{
+    color:#fff;
+    cursor: pointer;
+    font-size: 3rem;
+}
+
+#search-form label:hover{
+    color:#AB70A2;
+}
+
+#search-form #close{
+    position: absolute;
+    color:#fff;
+    cursor: pointer;
+    top: 2rem; right: 3rem;
+    font-size: 5rem;
+}
+
+.promo-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5rem 10%;
+    background: #eab4ff13;
+    height: 100vh;
+    animation: promoZoom 1.5s ease-in-out;
+}
+
+@keyframes promoZoom {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInPromo {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.content {
+    max-width: 50%;
+    animation: fadeInContent 1.5s ease-in-out;
+}
+
+@keyframes fadeInContent {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+    line-height: 1.2;
+}
+
+.content p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: #666;
+}
+
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+    color: #fff;
+    background: #572950;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.btn:hover {
+    background: #200d20;
+    transform: scale(1.1);
+}
+
+.image-container {
+    max-width: 45%;
+    animation: fadeInImage 1.5s ease-in-out;
+}
+
+@keyframes fadeInImage {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    animation: bounceImage 2s infinite ease-in-out;
+}
+
+@keyframes bounceImage {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.footer {
+    background-color: #f8f8f8;
+    padding: 2rem 10%;
+    animation: fadeInFooter 2s ease-in-out;
+    text-decoration: none;
+
+}
+
+@keyframes fadeInFooter {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.footer .credit {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 1.6rem;
+    color: #666;
+}
+
+.footer .credit span {
+    color: #572950;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* responsividade */
+
+@media (max-width: 1024px) { 
+    html {
+        font-size: 60%; 
+    }
+
+    header {
+        padding: 1rem 5%;
+    }
+
+    header .navbar {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    header .navbar a {
+        padding: 1rem;
+        font-size: 1.8rem;
+    }
+
+    header .navbar.active {
+        display: flex;
+    }
+
+    header .icons #menu-bars {
+        display: inline-block; 
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 58%;
+    }
+
+    header {
+        padding: 1rem 5%;
+    }
+
+    header .navbar {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 1001;
+    }
+
+    header .navbar a {
+        padding: 1rem;
+        font-size: 1.8rem;
+    }
+
+    header .navbar.active {
+        display: flex;
+    }
+
+    header .icons #menu-bars {
+        display: inline-block;
+    }
+
+    .promo-section {
+        padding: 3rem 5%;
+        gap: 2rem; 
+    }
+
+    .content h1 {
+        font-size: 3rem;
+    }
+
+    .content p {
+        font-size: 1.6rem;
+    }
+
+    .btn {
+        font-size: 1.6rem;
+    }
+
+    .image-container img {
+        max-width: 280px;
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 55%;
+    }
+
+    header .icons i,
+    header .icons a {
+        height: 3.5rem;
+        line-height: 3.5rem;
+        width: 3.5rem;
+        font-size: 1.5rem;
+    }
+
+    .promo-section {
+        padding: 2rem 5%;
+        gap: 1.5rem;
+    }
+
+    .content h1 {
+        font-size: 2.8rem;
+    }
+
+    .content p {
+        font-size: 1.4rem;
+    }
+
+    .btn {
+        font-size: 1.4rem;
+        padding: 1rem 2rem;
+    }
+
+    .image-container img {
+        max-width: 250px; 
+    }
+}
+
+.footer .box-container {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap:1.5rem;
+    text-decoration: none;
+
+}
+
+.footer .box-container .box h3 {
+    padding: .5rem 0;
+    font-size: 2.5rem;
+    color: var(--black);
+    text-decoration: none;
+
+}
+
+.footer .box-container .box a {
+    display: block;
+    padding: .5rem 0;
+    font-size: 1.5rem;
+    color: var(--light-color);
+    text-decoration: none;
+
+}
+
+.footer .box-container .box a:hover {
+    color:#AB70A2;
+    text-decoration: none;
+    
+    text-decoration: underline;
+}
+
+.footer .credit {
+    text-align: center;
+    border-top: .1rem solid rgba(0, 0, 0, .1);
+    font-size: 1.8rem;
+    color:var(--black);
+    padding: .5rem;
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+    text-decoration: none;
+
+}
+
+.footer .credit span {
+    color:#572950;
+    text-decoration: none;
+
+}
     </style>
 </head>
+<!--body-->
 <body>
-    <div class="container">
-        <button class="back-button btn btn-link text-dark"><a href="/home"><i class="fas fa-chevron-left"></i></a></button>
-        <div class="header text-center">
-            <h1 class="promo mb-0">Promocionais</h1>
-            <h1 class="cimol mb-0">para o <span>CIMOL</span></h1>
+    <header>
+        <a href="#" class="logo"><i class="fas fa-utensils"></i> Tasty.C</a>
+        <nav class="navbar">
+            <a class="" href="/home">Home</a>
+            <a href="/RestaurantesAll">Restaurantes</a>
+            <a href="/promo">Promocionais</a>
+            <a href="/perfil/{{user.id}}">Perfil</a>
+            {% if user_logged_data.perfil.admin %}
+                <a href="/CadastroRes">Adicionar Restaurante</a><!--aqui é so no admin-->
+                <a href="/CadastroCardapio">Adicionar Cardápio</a>
+                <a href="/CadastroTipo">Adicionar Tipo de Comida</a>
+            {% endif %}
+                <a class="active" href="/controle/{{user.id}}">Controle de Gastos</a>
+
+        </nav>
+        <div class="icons">
+            <i class="fas fa-bars" id="menu-bars"></i>
+            <i class="fas fa-search" id="search-icon"></i>
+            <a href="/favoritos/{{user.id}}" class="fas fa-heart"></a>
+            <a href="/comentarios" class="fas fa-star"></a>
         </div>
-        <div class="content text-center mt-4">
-            <div class="promo-wrapper">
-                <div class="promo-text">
-                    <a href="/promo2">Confira os restaurantes com promoções</a>
-                </div>
-                <div class="dishes">
-                    <img src="./assets/imagens/salada.png" class="dish dish1" alt=" prato de salada"> 
-                    <img src="./assets/imagens/prato.png" class="dish dish2" alt="prato de comida">
-                    <img src="./assets/imagens/massa.png" class="dish dish3" alt="prato de macarrao1">
-                    <img src="./assets/imagens/macarrao.png" class="dish dish4" alt="prato de macarrao2">
-                    <img src="./assets/imagens/pizza.png" class="dish dish5" alt="imagem de uma pizza">
-                </div>
+    </header>
+
+    <!--search-->
+
+    <form action="/search" id="search-form" method="get">
+        <input type="search" name="search-box" placeholder="Busque aqui..." id="search-box">
+        <label for="search-box" class="fas fa-search"></label>
+        <i class="fas fa-times" id="close"></i>
+    </form>
+
+    <br><br>
+    <section class="promo-section">
+        <div class="content">
+            <h1>Restaurantes com Promoções Exclusivas</h1>
+            <p>Explore nossas sugestões de restaurantes com as melhores ofertas da cidade e desfrute de pratos incríveis.</p>
+            <a href="/promo2" class="btn">Saiba Mais</a>
+        </div>
+        <div class="image-container">
+            <img src="/assets/imagens/promomoto.png" alt="Homem com moto" class="scooter-image">
+        </div>
+    </section>
+
+    <!--footer section-->
+    <section class ="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>Local</h3>
+                <a href="#">CIMOL-Rua Guilherme Lahm, 1778-Taquara/RS</a>
+            </div>
+
+            <div class="box">
+                <h3>Links Rápidos</h3>
+                <a href="#">Home</a>
+                <a href="#">Restaurantes</a>
+                <a href="#">Favoritos</a>
+                <a href="#">Perfil</a>
+            </div>
+
+            <div class="box">
+                <h3>Contatos</h3>
+                <a href="#">(51) 3542-1309</a>
+                <a href="#">eduarda-souza6@educar.rs.gov.br</a>
+                <a href="#">eloisa-sborges@educar.rs.gov.br</a>
+            </div>
+
+            <div class="box">
+                <h3>Social</h3>
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
             </div>
         </div>
-    </div>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script>
-        //tela promo
-        document.addEventListener('DOMContentLoaded', () => {
-            const dishes = document.querySelectorAll('.dish');
-            let radius = 193; // Default radius
-
-            // Check screen width and adjust radius for smaller screens
-            if (window.innerWidth <= 768) {
-                radius = 150; // Adjusted radius for smaller screens
-            }
-
-            const angleStep = 360 / dishes.length; // Calculate the angle step based on the number of dishes
-            let angle = 0;
-
-            // Function to update dish positions
-            const updateDishPositions = (angle) => {
-                dishes.forEach((dish, index) => {
-                    const dishAngle = angle + (index * angleStep);
-                    const radian = dishAngle * (Math.PI / 180);
-                    const x = radius * Math.cos(radian);
-                    const y = radius * Math.sin(radian);
-                    dish.style.transform = `translate(${x}px, ${y}px)`;
-                });
-            };
-
-            // Initial position update
-            updateDishPositions(angle);
-
-            // Handle touch events
-            let startY = 0;
-
-            const handleTouchStart = (e) => {
-                startY = e.touches[0].clientY;
-            };
-
-            const handleTouchMove = (e) => {
-                const moveY = e.touches[0].clientY;
-                const diff = startY - moveY;
-                angle += diff * 0.1;
-                updateDishPositions(angle);
-                startY = moveY;
-            };
-
-            document.querySelector('.dishes').addEventListener('touchstart', handleTouchStart);
-            document.querySelector('.dishes').addEventListener('touchmove', handleTouchMove);
-
-            // Handle mouse events
-            let startMouseY = 0;
-            let isDragging = false;
-
-            const handleMouseDown = (e) => {
-                startMouseY = e.clientY;
-                isDragging = true;
-            };
-
-            const handleMouseMove = (e) => {
-                if (!isDragging) return;
-                const moveY = e.clientY;
-                const diff = startMouseY - moveY;
-                angle += diff * 0.1;
-                updateDishPositions(angle);
-                startMouseY = moveY;
-            };
-
-            const handleMouseUp = () => {
-                isDragging = false;
-            };
-
-            document.querySelector('.dishes').addEventListener('mousedown', handleMouseDown);
-            document.addEventListener('mousemove', handleMouseMove);
-            document.addEventListener('mouseup', handleMouseUp);
-        });
-
-    </script>
+        <div class="credit">copyright @ 2024 por <span>Borges e Souza</span></div>
+    </section>
 </body>
-</html>
+

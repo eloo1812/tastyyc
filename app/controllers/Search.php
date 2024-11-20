@@ -26,4 +26,5 @@ class Search extends Base {
             'title' => 'TastyC'
         ]);
     }
+    
 }

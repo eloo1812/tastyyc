@@ -5,6 +5,7 @@ use PDO;
 use app\database\models\Base;
 
 class SearchModel extends Base {
+    protected $table = 'produto';
 
     public function getAll($query) {
         // Sanitizar e validar a consulta
@@ -13,6 +14,7 @@ class SearchModel extends Base {
         $sql = "
         SELECT 
             p.nome AS produto_nome,
+            p.valor AS produto_valor,
             r.nome AS restaurante_nome
         FROM 
             produto p
@@ -24,6 +26,7 @@ class SearchModel extends Base {
         UNION
         SELECT 
             NULL AS produto_nome,
+            NULL AS produto_valor, 
             r.nome AS restaurante_nome
         FROM 
             restaurante r
@@ -38,4 +41,7 @@ class SearchModel extends Base {
 
         return $results;
     }
+
+
+    
 }

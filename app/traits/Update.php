@@ -1,8 +1,11 @@
 <?php
 namespace app\traits;
 
+use app\database\models\Connection;
+
 trait Update
 {
+    
     public function update(array $updateFieldsAndValues)
     {
         $fields = $updateFieldsAndValues['fields'];

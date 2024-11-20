@@ -6,12 +6,14 @@ use app\classes\Validate;
 use app\database\models\Usuario;
 use app\database\models\ControleModel;
 
+
 class Controle extends Base {
     public function __construct()
     {
         $this->user = new Usuario;
         $this->validate = new Validate;
         $this->comprados = new ControleModel;
+        
     }
 
     public function index($request, $response, $args) {
@@ -22,10 +24,12 @@ class Controle extends Base {
         $totalSemana = $this->comprados->getTotalSemana($id);
         $totalMes = $this->comprados->getTotalMes($id);
         $totalAno = $this->comprados->getTotalAno($id);
-        $totalDia = $this->comprados->getTotalDia($id); // Adiciona essa linha
+        $totalDia = $this->comprados->getTotalDia($id); 
         
 
         $messages = Flash::getAll();
+
+        
 
         $comprados = $this->comprados->getAllById($idUser);
 
@@ -37,7 +41,7 @@ class Controle extends Base {
             'totalSemana' => $totalSemana,
             'totalMes' => $totalMes,
             'totalAno' => $totalAno,
-            'totalDia' => $totalDia, // Adiciona essa linha
+            'totalDia' => $totalDia, 
     
         ]);    
     }
@@ -64,7 +68,7 @@ class Controle extends Base {
         $created = $this->comprados->create([
             'usuarios_id' => $idUser,
             'refeicao_idrefeicao' => $idProd,
-            'data' => date('Y-m-d'), // Data atual
+            'data' => date('Y-m-d'), 
             'valor' => $valorProduto
         ]);
     

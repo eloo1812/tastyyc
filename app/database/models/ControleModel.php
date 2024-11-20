@@ -9,6 +9,8 @@ class ControleModel extends Base {
     protected $table = 'gasto';
 
     
+
+    
     public function getAllById($id) {
         $sql = "SELECT 
                     g.idgasto, 
@@ -19,7 +21,9 @@ class ControleModel extends Base {
                     p.descricao, 
                     p.valor AS produto_valor,
                     r.nome AS restaurante_nome, 
-                    r.endereco AS restaurante_endereco
+                    r.endereco AS restaurante_endereco,
+                    t.nome AS tipoimg_nome,
+                    t.caminho AS tipoimg_caminho
                 FROM 
                     gasto g
                 JOIN 
@@ -28,6 +32,8 @@ class ControleModel extends Base {
                     produto p ON g.refeicao_idrefeicao = p.idrefeicao
                 JOIN 
                     restaurante r ON p.idrestaurante = r.idrestaurante
+                LEFT JOIN 
+                    tipoimg t ON p.tipoimg = t.id
                 WHERE 
                     g.usuarios_id = :usuarios_id";
                 

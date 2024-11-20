@@ -7,7 +7,7 @@ use app\traits\Connection;
 class Cardapio extends Base {
     use Connection;
     protected $table = 'produto';
-
+    
     public function getAll() {
         $sql = "SELECT 
                     p.idrefeicao, 
@@ -21,7 +21,7 @@ class Cardapio extends Base {
                     produto p
                 JOIN 
                     restaurante r ON p.idrestaurante = r.idrestaurante
-                LEFT JOIN 
+                INNER JOIN 
                     tipoimg t ON p.tipoimg = t.id;
 
         ";
@@ -56,23 +56,24 @@ class Cardapio extends Base {
 
     public function getByIdWithRestaurant($id) {
         $sql = "SELECT 
-                    p.idrefeicao, 
-                    p.nome AS produto_nome, 
-                    p.descricao, 
-                    p.valor AS produto_valor,
-                    r.nome AS restaurante_nome,
-                    r.endereco AS restaurante_endereco,
-                    t.nome AS tipoimg_nome,
-                    t.caminho AS tipoimg_caminho
-                FROM 
-                    produto p
-                JOIN 
-                    restaurante r ON p.idrestaurante = r.idrestaurante
-                LEFT JOIN 
-                    tipoimg t ON p.tipoimg = t.id
-                WHERE 
-                    p.idrefeicao = :idrefeicao;
-";
+            p.idrefeicao, 
+            p.nome AS produto_nome, 
+            p.descricao, 
+            p.valor AS produto_valor,
+            r.nome AS restaurante_nome,
+            r.endereco AS restaurante_endereco,
+            p.tipoimg AS produto_tipoimg,
+            t.nome AS tipoimg_nome,
+            t.caminho AS tipoimg_caminho
+        FROM 
+            produto p
+        JOIN 
+            restaurante r ON p.idrestaurante = r.idrestaurante
+        LEFT JOIN 
+            tipoimg t ON p.tipoimg = t.id
+        WHERE 
+            p.idrefeicao = :idrefeicao";
+
     
         $connection = $this->connection;
         $stmt = $connection->prepare($sql);

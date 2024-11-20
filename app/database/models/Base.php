@@ -10,6 +10,6 @@ use app\traits\Connection;
 
 abstract class Base
 {
-    use Create, Read, Update, Delete, Connection;
+    use Connection, Create, Read, Update, Delete;
    
 }

@@ -1,0 +1,209 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body, input {
+    font-family: 'Poppins', sans-serif;
+    
+}
+
+#flash_alerta{
+    font-size: 1rem;
+    color: #000;
+}
+
+
+.signin-signup img{
+    text-align: center;
+    margin-left: 15vw;
+    margin-top: 5vh;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: white;
+    overflow: hidden;
+}
+
+/*.forms-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}*/
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 12vh;
+}
+
+.input-field {
+    max-width: 250px;
+    width: 100%;
+    height: 38px;
+    background-color: #fff;
+    margin: 15px 0;
+    border: 1px solid #000;
+    border-radius: 55px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0.4rem;
+}
+
+.input-field i {
+    text-align: center;
+    line-height: 25px; /* Ajuste para altura igual ao campo de entrada */
+    color: #555249;
+    font-size: 1rem;
+    
+}
+
+.input-field input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    line-height: 1;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: #555249;
+    margin-bottom: 6vh;
+}
+.input-field input::placeholder{
+    color: #aaa;
+    font-weight: 500;
+}
+.btn
+{
+    width: 95px;
+    color: #555249;
+    background-color: #fff;
+    height: 32px;
+    border: 1px solid #000;
+    outline: none;
+    border-radius: 49px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-top: 3vh;
+    
+}
+.btn:hover{
+    background-color: #5B3A56;
+    color: white;
+    border:1px solid white;
+    box-shadow: 0 5px 10px 0 rgba(106, 89, 255, 0.2);
+    transform: translate(0, -2px);
+    transition: transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
+    background-color 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
+    box-shadow 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
+    -webkit-transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  
+}
+.separator-container {
+    position: relative;
+}
+
+.separator {
+    border: none;
+    border-top: 1px solid #000;
+    margin-top: 13vh;
+}
+
+.or {
+    position: absolute;
+    top: -10px; /* Ajuste conforme necessário para posicionar o "ou" corretamente */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white; /* Opcional: adiciona uma cor de fundo para o texto "ou" */
+    padding: 0 5px; /* Opcional: adiciona um espaçamento ao redor do texto "ou" */
+}
+.baixo{
+    margin-top: 12vh;
+}
+
+
+.social-text{
+    padding: .7rem 0;
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 1vh;
+    
+}
+.social-text a{
+    text-decoration: none;
+    color: #000;
+}
+.social-media{
+    display: flex;
+    justify-content: center;
+    margin-top: 5vh;
+    
+}
+.social-icon{
+    height: 46px;
+    width: 46px;
+    border: 1px solid #333;
+    margin: 2vh 0.45rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.1rem;
+    border-radius: 49px;
+    color:#5B3A56
+}
+.social-icon:hover{
+    background-color: #5B3A56;
+    color: white;
+    border:1px solid white;
+    box-shadow: 0 5px 10px 0 rgba(106, 89, 255, 0.2);
+    transform: translate(0, -2px);
+    transition: transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
+    background-color 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
+    box-shadow 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
+    -webkit-transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  
+}
+
+
+/*cadastro*/
+
+.signup img{
+    text-align: center;
+    margin-left: 15vw;
+    margin-top: 5vh;
+}
+.social-text1{
+
+    justify-content: flex-start;
+    align-items: left;
+    text-decoration: none;
+    font-size: 0.8rem;
+    color:#5B3A56;
+    margin-right: 21vw;
+    
+}
+.social-text2{
+    text-decoration: none;
+    font-size: 0.8rem;
+    color:#5B3A56;
+    
+}
+.admin{
+    margin-top: 6vh;
+    padding: 8px;
+}
+.separator2{
+    border: none;
+    border-top: 1px solid #000;
+    margin-top: 1vh;
+    
+}

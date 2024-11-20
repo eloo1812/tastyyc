@@ -2,10 +2,12 @@
 namespace app\traits;
 
 use PDOException;
+use app\database\models\Connection;
 
 
 trait Delete
 {
+    
     public function delete($field, $value)
     {
         try {

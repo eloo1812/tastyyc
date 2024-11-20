@@ -14,4 +14,6 @@ class Restaurante extends Base {
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    
 }

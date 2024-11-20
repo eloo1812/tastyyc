@@ -9,7 +9,7 @@ class FavoritosModel extends Base {
     protected $table = 'usuarios_favoritos';
 
     public function getAllById($id) {
-        $sql = "SELECT 
+        $sql = "SELECT DISTINCT
                     uf.idfavoritos, 
                     uf.usuarios_id, 
                     uf.idrefeicao,
@@ -36,4 +36,6 @@ class FavoritosModel extends Base {
         
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    
 }

@@ -20,61 +20,365 @@
 }
 
 * {
-    font-family: 'Nunito', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  color: var(--black);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.h2 {
+    font-size:xx-large;
+}
+
+/favoritos/
+.favoritos-container {
+    position: relative;
+    width: 90%; 
+    max-width: 1200px; 
+    height: 200px; 
+    margin: 20px auto; 
+    border-radius: 15px;
+    overflow: hidden; 
+}
+
+.imagem-favoritos {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(60%);
+}
+
+.texto-favoritos {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+}
+
+.texto-favoritos h1 {
+    font-size: 2em;
+    font-weight: bold;
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    outline: none;
-    border: none;
-    transition: all .2s linear;
 }
 
-html {
-    font-size: 62.5%;
-    scroll-padding-top: 5.5rem;
-    scroll-behavior: smooth;
-}
-
-section{
-    padding: 2rem 9%;
-}
-
-section:nth-child(even){
-    background: #eee;
-}
-
-.sub-heading{
+/recursos/
+.features h2 {
     text-align: center;
-    color:#572950;
-    font-size: 2rem;
-    padding-top: 1rem;
 }
 
-.heading{
+.feature-cards {
+    display: flex;
+    justify-content: center; 
+    gap: 55px;
+    flex-wrap: wrap;
+    padding: 10px; 
+}
+
+.feature-card {
+    width: 280px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    color:var(--black);
-    font-size: 3rem;
-    padding-bottom: 2rem;
-    text-transform: uppercase;
+    padding: 15px;
+    transition: transform 0.3s ease;
 }
 
-.btn{
+.feature-card:hover {
+    transform: scale(1.03); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.feature-card img {
+    width: 200px; 
+    height: 200px; 
+    margin-bottom: 10px;
+    object-fit: cover; 
+    border-radius: 8px;
+}
+
+/produtos favoritos/
+.favorites {
+  text-align: center;
+  padding: 20px;
+}
+
+.favs {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 10px;
+}
+
+.fav {
+  min-width: 200px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  text-align: center;
+  padding: 20px;
+  flex-shrink: 0;
+}
+
+
+
+
+.fav img {
+    width: 150px; 
+    height: 150px; 
+    object-fit: cover;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+  
+.fav h3 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.fav .description {
+  font-size: 14px;
+  color: var(--light-color);
+  margin-bottom: 5px;
+}
+
+.fav .price {
+  font-size: 14px;
+  color: #555;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.unfavorite-btn {
+  width: 90%;
+  background-color: #ff4d4d;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 17px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.unfavorite-btn:hover {
+  background-color: #cc0000;
+}
+
+.fav:hover .tooltip {
+  display: block;
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #555;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f0f0f0; 
+}
+
+.footer .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    max-width: 1200px;
+    width: 100%;
+    text-align: center;
+}
+
+.footer .box-container .box h3 {
+    padding: 0.3rem 0;
+    font-size: 1.5rem;
+    color: var(--black);
+}
+
+.footer .box-container .box a {
+    display: block;
+    padding: 0.3rem 0;
+    font-size: 1rem;
+    color: var(--light-color);
+    text-decoration: none; 
+}
+
+.footer .box-container .box a:hover {
+    color: #AB70A2;
+}
+
+.footer .credit {
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    color: var(--black);
+    padding: 1rem 0;
+    width: 100%;
     margin-top: 1rem;
-    display: inline-block;
-    font-size: 1.7rem;
-    color:#fff;
-    background: var(--black);
-    border-radius: 2rem;
-    cursor: pointer;
-    padding: .8rem 3rem;
 }
 
-.btn:hover{
-    background: #572950;
-    letter-spacing: .1rem;
+.footer .credit span {
+    color: #572950;
 }
 
+.image-container {
+      position: relative;
+      width: 90%; /* Define a largura para 90% da tela */
+      height: 250px; /* Define a altura padrão */
+      background-image: url('/assets/imagens/frangao.jpg'); /* Substitua pelo caminho da sua imagem */
+      background-size: cover;
+      background-position: center;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 20px auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+      /* Centraliza o conteúdo com flexbox */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Estiliza o texto centralizado */
+    .image-container .text-overlay {
+      color: white;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      padding: 10px;
+    }
+
+    /* Estiliza o título */
+    .image-container .text-overlay h2 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    /* Estiliza o subtítulo */
+    .image-container .text-overlay p {
+      margin: 5px 0 0;
+      font-size: 18px;
+      font-weight: normal;
+    }
+
+    /* Responsividade para telas médias (tablets) */
+    @media (max-width: 768px) {
+      .image-container {
+        height: 200px; /* Reduz a altura em tablets */
+      }
+      .image-container .text-overlay h2 {
+        font-size: 24px;
+      }
+      .image-container .text-overlay p {
+        font-size: 16px;
+      }
+    }
+
+    /* Responsividade para telas pequenas (smartphones) */
+    @media (max-width: 480px) {
+      .image-container {
+        height: 150px; /* Reduz a altura em smartphones */
+      }
+      .image-container .text-overlay h2 {
+        font-size: 20px;
+      }
+      .image-container .text-overlay p {
+        font-size: 14px;
+      }
+    }
+
+
+
+
+
+@media (max-width: 768px) {
+    /* ajustes para o texto dentro da imagem */
+    .texto-favoritos h1 {
+        font-size: 1.2em; 
+        line-height: 1.2; 
+        white-space: normal; 
+    }
+
+    .features h2 {
+        font-size: 1.2em; 
+    }
+
+    .favoritos-container {
+        height: auto; 
+    }
+  
+    .feature-cards {
+        gap: 20px; 
+    }
+  
+    .feature-card {
+        width: 90%; 
+        max-width: 300px; 
+    }
+  
+    .cards {
+        flex-direction: column;
+        align-items: center;
+    }
+  
+    .footer .box-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    /* ajustes para o texto dentro da imagem */
+    .texto-favoritos h1 {
+        font-size: 1em; 
+        line-height: 1.2; 
+        white-space: normal; 
+        width: 100%; 
+        text-align: center; 
+    }
+  
+    .features h2 {
+        font-size: 1em;
+    }
+  
+    .favoritos-container {
+        height: auto; 
+    }
+  
+    .feature-card img {
+        width: 100px; 
+        height: 100px;
+    }
+  
+    .feature-card, .card {
+        padding: 10px; 
+    }
+  
+    .footer .credit {
+        font-size: 0.9rem; 
+    }
+}
 header {
     position: fixed;
     top: 0;
@@ -260,10 +564,6 @@ header .icons #menu-bars {
         font-size: 45%;
     }
 
-    .dishes .box-container .box img{
-        height: auto;
-        width: 100%;
-    }
 
     header .icons i,
     header .icons a {
@@ -537,52 +837,83 @@ header .icons a.active.fas.fa-heart {
         <i class="fas fa-times" id="close"></i>
     </form>
 
-    {% if favoritos == null%}
+    {% if favoritos == null %}
     <div class="text-center my-5">
         <img src="/assets/imagens/naotemfav.png" class="img-fluid" alt="Nenhum favorito">
         <p class="naotemfav">Você ainda não adicionou nada aos seus favoritos!</p>
     </div>
-    {% else %}
+{% else %}
 
-    <br><br><br><br>
-
-    <section class="home" id="home">
-        <div class="home-text">
-            <h1>Favoritos</h1>
-            <p>Seus itens favoritos em um só lugar! Adicione-os aqui e ajude a criar uma lista de desejos irresistível.</p>
-            <a href="/comentarios" class="btn">Ir avaliações</a>
+    <br><br><br><br><br><br><br><br><br><br>
+    
+    <!-- Essa seção deve aparecer apenas uma vez -->
+    <div class="image-container">
+        <div class="text-overlay">
+            <h2>Seus sabores preferidos sempre ao alcance!</h2>
+            <h5>Esses são os pratos que você adora. Explore seus favoritos sempre que quiser.</h5>
         </div>
-        <div class="home-img">
-            <img src="/assets/imagens/macarrao.png" alt="">
+    </div>
+
+    <br>
+
+    <!-- Seção de recursos - exibida uma vez -->
+    <section class="features">
+        <h2>Nossos Recursos</h2>
+        <br><br>
+        <div class="feature-cards">
+            <div class="feature-card">
+                <img src="/assets/imagens/local.png" alt="Entrega Rápida">
+                <h3>Perto de Você</h3>
+                <p>Seus favoritos próximos ao CIMOL.</p>
+            </div>
+            <div class="feature-card">
+                <img src="/assets/imagens/qualidade.avif" alt="Pagamentos Fáceis">
+                <h3>Qualidade Garantida</h3>
+                <p>Refeições saborosas e com desconto.</p>
+            </div>
+            <div class="feature-card">
+                <img src="/assets/imagens/atomo.png" alt="Qualidade Garantida">
+                <h3>Membros do CIMOL</h3>
+                <p>Site voltado à comunidade escolar.</p>
+            </div>
         </div>
     </section>
 
-        {% for favorito in favoritos %}
-        <h1>nome produto: {{favorito.produto_nome}}</h1>
-        <h1>descrição: {{favorito.descricao}}</h1>
-        <h1>valor: {{favorito.valor}}</h1>
-        <h1>nome restaurante: {{favorito.restaurante_nome}}</h1>
-        <h1>endereço: {{favorito.endereco}}</h1>
-        
-        <form action="/favoritos/delete/{{favorito.idfavoritos}}" method="POST">
-            <input type="hidden" name="_METHOD" value="DELETE">
-            <button type="submit" class="btn btn-danger">Desfavoritar</button>
-        </form>
-        
-        <br>
-        <br>
-        {% endfor %}
-    {%endif%}
+    <section class="favorites">
+        <h2>Meus Favoritos</h2>
+        <br><br>
+        <div class="favs">
+            {% for favorito in favoritos %}
+                <div class="fav" data-restaurante="Restaurante A - R. Exemplo, 123">
+                    <!--<img src="{{favorito.tipoimg}}" alt="Imagem do Produto">!-->
+                    <h3>{{favorito.produto_nome}}</h3>
+                    <p class="description">descrição: {{favorito.descricao}}</p>
+                    <p class="resta">nome do restaurante: {{favorito.restaurante_nome}}</p>
+                    <p class="price">R$ {{favorito.valor}}</p>
+                    <form action="/favoritos/delete/{{favorito.idfavoritos}}" method="POST">
+                        <input type="hidden" name="_METHOD" value="DELETE">
+                        <button type="submit" class="unfavorite-btn">Desfavoritar</button>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    <br><br><br><br>
 
-    <section class="dishes" id="dishes">
-        <h3 class="sub-heading">Incluir aos favoritos</h3>
-        <h1 class="heading">Sugestões para você</h1>
+{% endif %}
+
+
+    <section class="food" id="food">
+        <div class="cabecinha">
+            <span>Incluir aos favoritos!</span>
+            <h3>Sugestões para você</h3>
+        </div>
     
         <div class="swiper food-slider">
             <div class="swiper-wrapper">
                 {%for beto in betos %}
                 <div class="swiper-slide slide" data-name="food-1">
-                    <img src="/assets/imagens/macarrao.png" alt="prato de macarrao">
+                    <!--<img src=".{{beto.tipoimg_caminho}}" alt="prato de macarrao">!-->
                     <h3>{{beto.nome}}</h3>
                     <div class="price">RS{{beto.valor}}</div>
                 </div>
@@ -593,7 +924,8 @@ header .icons a.active.fas.fa-heart {
         </div>
     </section>
 
-    
+    <br>
+        <br>
     
     
 <!--footer section-->
@@ -677,6 +1009,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
     });
 });
+
 
 
 

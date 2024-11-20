@@ -58,8 +58,10 @@ $app->get('/controle/{idUser}', Controle::class . ":index")->add($logged);
 $app->post('/controle/{idrefeicao}/{idUser}', Controle::class . ":store");
 $app->delete('/controle/delete/{id}', Controle::class . ":destroy");
 
+
 $app->post('/salvarFigura/{id}', Perfil::class . ":salvarfigurinha");
 
 $app->get('/produto/{id}', Produto::class . ":index")->add($logged); 
 
 $app->get('/chegar/{id}', Mapa::class . ":index")->add($logged); 
+

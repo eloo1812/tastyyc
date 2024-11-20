@@ -10,6 +10,259 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://kit.fontawesome.com/64d58efce2.js"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.no-items-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 60vh;
+            text-align: center;
+        }
+
+        .no-items-container .img-fluid {
+            margin-top: 10vh;
+            width: 150px;
+            height: 150px;
+        }
+
+        .no-items-container .naotemfav {
+            font-size: x-large;
+            margin-top: 20px;
+        }
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.cart-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.cart-items {
+    width: 60%;
+    border-collapse: collapse;
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+
+.cart-items th, .cart-items td {
+    padding: 25px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Nunito', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .centered-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .centered-container .img-fluid {
+            max-width: 250px; /* Aumente o valor para aumentar a imagem */
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .centered-container .naotemfav {
+            font-size: x-large;
+        }
+
+.product-info {
+    display: flex;
+    align-items: center;
+}
+
+.product-info img {
+    width: 100px;
+    margin-right: 15px;
+}
+
+
+
+.categoria {
+    color: #777;
+    font-size: 0.9em;
+}
+
+.remove-btn {
+    background-color: #ff5c5c;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.3s ease; 
+}
+
+.remove-btn:hover {
+    background-color: #ff3b3b; 
+}
+
+.cart-summary {
+    width: 35%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    height: 300px; 
+    overflow-y: auto; 
+}
+
+.cart-summary h2 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.cart-summary p {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.cart-summary .total {
+    font-weight: bold;
+}
+
+
+.add-coupon {
+    color: #572950;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.checkout-btn {
+    background-color: #572950;
+    color: #fff;
+    width: 100%;
+    padding: 15px;
+    font-size: 1em;
+    border: none;
+    cursor: pointer;
+    border-radius: 35px;
+}
+
+.checkout-btn:hover{
+    background: #72486c;
+    letter-spacing: .20px;
+}
+.text-center img{
+    align-items: center;
+
+}
+
+
+
+
+
+
+@media (max-width: 768px) {
+    .cart-content {
+        flex-direction: column;
+    }
+
+    .cart-items {
+        width: 100%;
+    }
+
+    .cart-summary {
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .cart-content {
+        padding: 10px;
+    }
+
+    .cart-items {
+        width: 100%;
+    }
+
+    .cart-items th {
+        display: none;
+    }
+
+    .cart-items td {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 10px;
+        border: none;
+    }
+
+    .product-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .product-info img {
+        width: 80px;
+        margin: 0 auto 10px;
+    }
+
+    .remove-btn {
+        width: 100%;
+        margin-top: 5px;
+        padding: 5px;
+        font-size: 0.9em;
+    }
+
+    .cart-summary {
+        margin-top: 20px;
+        padding: 15px;
+    }
+
+    .cart-summary h2 {
+        font-size: 1.2em;
+        text-align: center;
+    }
+
+    .cart-summary p {
+        font-size: 0.9em;
+    }
+
+    .checkout-btn {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+}
         .img-fluid{
             margin-top: 10vh;
         }
@@ -53,15 +306,17 @@
     <header>
         <a href="#" class="logo"><i class="fas fa-utensils"></i> Tasty.C</a>
         <nav class="navbar">
-            <a href="/home">Home</a>
+            <a class="" href="/home">Home</a>
             <a href="/RestaurantesAll">Restaurantes</a>
             <a href="/promo">Promocionais</a>
             <a href="/perfil/{{user.id}}">Perfil</a>
             {% if user_logged_data.perfil.admin %}
-                <a href="/CadastroRes">Adicionar Restaurante</a><!--aqui é p por no perfil-->
+                <a href="/CadastroRes">Adicionar Restaurante</a><!--aqui é so no admin-->
                 <a href="/CadastroCardapio">Adicionar Cardápio</a>
+                <a href="/CadastroTipo">Adicionar Tipo de Comida</a>
             {% endif %}
-                <a class="active" href="">Controle de Gastos</a>
+                <a class="active" href="/controle/{{user.id}}">Controle de Gastos</a>
+
         </nav>
         <div class="icons">
             <i class="fas fa-bars" id="menu-bars"></i>
@@ -70,72 +325,108 @@
             <a href="/comentarios" class="fas fa-star"></a>
         </div>
     </header>
+
+    <!--search-->
+
     <form action="/search" id="search-form" method="get">
         <input type="search" name="search-box" placeholder="Busque aqui..." id="search-box">
         <label for="search-box" class="fas fa-search"></label>
         <i class="fas fa-times" id="close"></i>
     </form>
 
+    <br><br><br><br><br><br><br><br><br>
+    <div class="container">
+        <h1>Controle de Gastos</h1>
     
+        <div class="cart-content">
+            {% if comprados is not empty %}
+                <table class="cart-items">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Preço</th>
+                            <th>Data Compra</th>
+                            <th>Nome do Restaurante</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for comprado in comprados %}
+                        <tr>
+                            <td>
+                                <div class="product-info">
+                                    <!--<img src="{{produto.tipoimg_caminho}}" alt="">!-->
+                                    <div>
+                                        <p>{{ comprado.produto_nome }}</p>
+                                        <span class="categoria">{{ comprado.descricao }}</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>R$ {{ comprado.produto_valor | number_format(2, ',', '.') }}</td>
+                            <td>{{ comprado.data }}</td>
+                            <td>{{ comprado.restaurante_nome }}</td>
+                            <td>
+                                <form action="/controle/delete/{{ comprado.idgasto }}" method="POST">
+                                    <input type="hidden" name="_METHOD" value="DELETE">
+                                    <button type="submit" class="remove-btn">X</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
 
+                <div class="cart-summary">
+                    <h2>Visão Geral de Gastos</h2>
+                    <p><span>Total no Dia</span><span>R$ {{ totalDia | number_format(2, ',', '.') }}</span></p>
+                    <p><span>Total na Semana</span><span>{{ totalSemana }}</span></p>
+                    <p><span>Total no Mês</span><span>{{ totalMes }}</span></p>
+                    <p><span>Total no Ano</span><span>{{ totalAno }}</span></p>
+                    <br>
+                    <button class="checkout-btn" onclick="window.location.href='/home'">VOLTAR PARA INÍCIO</button>
 
-    {% if comprados is not empty %}
-    {% for comprado in comprados %}
-    <section class="home" id="home">
-
-        <div class="swiper container home-slider">
-
-            <div class="swiper-wrapper wrapper">
-
-                <div class="swiper-slide slide">
-                    <div class="content">
-                        <span>Uma opção caseira</span>
-                        <h3>Santo Grill</h3>
-                        <p>Visite o Santo Grill, o restaurante onde você pode apreciar pratos 
-                            deliciosos e bem elaborados
-                        </p>
-                        <a href="#" class="btn">Saiba mais</a>
-                    </div>
-                    <div class="image">
-                        <img src="/assets/imagens/macarrao.png" alt="prato de macarrao">
-                    </div>
                 </div>
-
-            </div>
-            <div class="swiper-pagination"></div>
-        </div>
-    </section>
-    <div class="compra">
-        <h3><strong>Nome do Produto:</strong> {{ comprado.produto_nome }}</h3>
-        <h3>Data da Compra: {{ comprado.data }}</h3>
-        <h4><strong>Valor do Produto:</strong> R$ {{ comprado.produto_valor | number_format(2, ',', '.') }}</h4>
-        <p><strong>Descrição do Produto:</strong> {{ comprado.descricao }}</p>
-        <p><strong>Nome do Restaurante:</strong> {{ comprado.restaurante_nome }}</p>
-        <p><strong>Endereço:</strong> {{ comprado.restaurante_endereco }}</p>
-
-        <form action="/controle/delete/{{ comprado.idgasto }}" method="POST">
-            <input type="hidden" name="_METHOD" value="DELETE">
-            <button type="submit" class="btn btn">Comprei sem querer</button>
-        </form>
-        <br><br>
-    </div>
-    <section class="gastos">
-        <h2>Total de Gastos</h2>
-        <p><strong>Total do Dia:</strong> R$ {{ totalDia | number_format(2, ',', '.') }}</p>
-        <p><strong>Total da Semana:</strong> {{ totalSemana }}</p>
-        <p><strong>Total do Mês:</strong> {{ totalMes }}</p>
-        <p><strong>Total do Ano:</strong> {{ totalAno }}</p>
-    </section>
-    
-    {% endfor %}
-{% else %}
-    <div class="text-center my-5">
+            {% else %}
+    <div class="centered-container">
         <img src="/assets/imagens/naotemfav.png" class="img-fluid" alt="Nenhum favorito">
         <p class="naotemfav">Você ainda não adicionou nada aos seus itens de compra!</p>
     </div>
 {% endif %}
 
-    
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+const menuBars = document.getElementById('menu-bars');
+const navbar = document.querySelector('.navbar');
+
+menuBars.addEventListener('click', function () {
+    navbar.classList.toggle('active');
+});
+});
+
+window.onscroll = () =>{
+menubar.classList.remove('fa-times');
+navbar.classList.remove('active');
+}
+
+document.querySelector('#search-icon').onclick = () =>{
+document.querySelector('#search-form').classList.toggle('active');
+}
+
+document.querySelector('#close').onclick = () =>{
+document.querySelector('#search-form').classList.remove('active');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+const tabs = document.querySelectorAll('.tab');
+
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+    });
+});
+});
+</script>
 
 </body>
 </html>

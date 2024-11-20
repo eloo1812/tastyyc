@@ -11,4 +11,6 @@ class Tipo extends Base {
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    
 }

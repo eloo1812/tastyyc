@@ -2,32 +2,127 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/home.css"> <!-- Adicione este link -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <script src="https://kit.fontawesome.com/64d58efce2.js"></script>
-    <title>{{title}}</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
+    <title>Mapa com Botão de Instruções, Sair e Zoom</title>
     <style>
-        #map {
-            height: 40vh;
-            width: 50%;
-            margin-left: 30vw;
-            margin-top: 15vh;
+        /* Estilos do Mapa e Botões */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
         }
+
+        #map {
+            height: 100vh;
+            width: 100vw;
+        }
+
         #instructions {
-            position: fixed;
-            top: 50px;
-            left: 10px;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
             background: white;
-            padding: 10px;
-            margin-top: 5vh;
-            border-radius: 5px;
+            padding: 15px;
+            width: 300px;
+            max-width: 80%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            display: none;
+            z-index: 1000;
+        }
+
+        /* Botão para Instruções */
+        #toggle-instructions {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: #200d20;
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
             box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            z-index: 1001;
+        }
+
+        #toggle-instructions:hover {
+            background: #572950;
+        }
+
+        /* Botão de Sair */
+        #exit-button {
+            position: absolute;
+            top: 20px;
+            left: 60px;
+            background: #200d20;
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            z-index: 1001;
+            text-decoration: none; /* Remove a decoração do link */
+        }
+
+        #exit-button:hover {
+            background: #572950;
+        }
+
+        /* Botões de Zoom */
+        #zoom-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1001;
+        }
+
+        .zoom-button {
+            background: #200d20;
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        .zoom-button:hover {
+            background: #572950;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            #instructions {
+                width: 250px;
+            }
+            #toggle-instructions, #exit-button, .zoom-button {
+                width: 35px;
+                height: 35px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #instructions {
+                width: 200px;
+            }
         }
     </style>
 </head>
@@ -35,180 +130,123 @@
 
     <input type="hidden" id="Endereco" value="{{restaurante.endereco}}">
 
+    <!-- Mapa -->
     <div id="map"></div>
-    <br><br><br><br><br><br><br><br>
-    <div id="instructions"><h3>Instruções:</h3><ul id="instruction-list"></ul></div>
+
+    <!-- Botão para Sair -->
+    <a href="/RestaurantesAll" id="exit-button">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
+    
+
+    <!-- Botão para exibir instruções -->
+    <div id="toggle-instructions">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- Card de Instruções -->
+    <div id="instructions">
+        <h3>Instruções:</h3>
+        <ul id="instruction-list"></ul>
+    </div>
+
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         const map = L.map('map').setView([-29.6475, -50.7853], 14);
 
-// Adiciona o tile layer do OpenStreetMap
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
-// Variável global para o destino
-let destino;
+        const cimol = L.latLng(-29.6475, -50.7853);
+        L.marker(cimol).addTo(map).bindPopup('CIMOL');
 
-// Coordenadas
-const cimol = L.latLng(-29.6475, -50.7853); // Coordenadas da CIMOL
+        const apiKey = '5b3ce3597851110001cf6248815cc72d4b3840cbbf8a6cf3373fdeb5';
 
-const purpleIcon = L.icon({
-    iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
-    shadowSize: [41, 41]
-});
+        let destino;
 
-// Adiciona marcadores
-L.marker(cimol).addTo(map).bindPopup('CIMOL');
+        // Obtém o endereço do input e faz a busca por coordenadas
+        const addressInput = document.getElementById('Endereco');
+        const address = addressInput.value;
 
-// OpenRouteService API
-const apiKey = '5b3ce3597851110001cf6248815cc72d4b3840cbbf8a6cf3373fdeb5'; // Substitua pela sua chave da OpenRouteService
-
-async function getRoute() {
-    if (!destino) {
-        console.log('Destino não definido');
-        return;
-    }
-
-    try {
-        const response = await fetch(`https://api.openrouteservice.org/v2/directions/foot-walking?api_key=${apiKey}&start=${cimol.lng},${cimol.lat}&end=${destino.lng},${destino.lat}`);
-        const data = await response.json();
-
-        if (data.features && data.features.length > 0) {
-            const routeCoords = data.features[0].geometry.coordinates;
-            const instructions = data.features[0].properties.segments[0].steps;
-
-            const latlngs = routeCoords.map(coord => [coord[1], coord[0]]);
-            L.polyline(latlngs, { color: 'purple' }).addTo(map);
-
-            updateInstructions(instructions); // Atualiza as instruções iniciais
-        } else {
-            console.log('Nenhuma rota encontrada');
-        }
-    } catch (error) {
-        console.error('Erro ao obter rota:', error);
-    }
-}
-
-function updateInstructions(instructions) {
-    const instructionList = document.getElementById('instruction-list');
-    instructionList.innerHTML = '';
-
-    if (!instructions || instructions.length === 0) {
-        console.log('Nenhuma instrução encontrada');
-        return;
-    }
-
-    // Suponha que você tenha a lógica para obter a posição do usuário
-    const userPosition = [userLat, userLng];
-    const closestInstruction = findClosestInstruction(userPosition, instructions);
-
-    instructions.forEach(step => {
-        let instruction = step.instruction.toLowerCase();
-
-        // Tradução das instruções
-        if (instruction.includes('turn right')) {
-            instruction = 'Vire à direita';
-        } else if (instruction.includes('turn left')) {
-            instruction = 'Vire à esquerda';
-        } else if (instruction.includes('continue straight')) {
-            instruction = 'Siga reto';
-        } else if (instruction.includes('head west')) {
-            instruction = 'Siga a esquerda';
-        } else if (instruction.includes('in 100 meters')) {
-            instruction = instruction.replace('in ', 'Em ').replace(' meters', ' metros');
-        } else if (instruction.includes('keep left')) {
-            instruction = 'Mantenha-se à esquerda';
-        } else if (instruction.includes('keep right')) {
-            instruction = 'Mantenha-se à direita';
-        } else if (instruction.includes('head')) {
-            instruction = instruction.replace('head', 'Siga').replace('on', 'em');
-        } else if (instruction.includes('arrive at')) {
-            instruction = instruction.replace('arrive at', 'Chegue em').replace('on the left', 'à esquerda');
-        } else if (instruction.includes('slight left')) {
-            instruction = 'Vire ligeiramente à esquerda';
-        } else if (instruction.includes('sharp right')) {
-            instruction = 'Vire à direita com força';
-        } else if (instruction.includes('sharp left')) {
-            instruction = 'Vire à esquerda com força';
-        } else if (instruction.includes('slight right')) {
-            instruction = 'Vire ligeiramente à direita';
-        } else if (instruction.includes('west')) {
-            instruction = 'oeste';
+        async function getCoordinates(address) {
+            const encodedAddress = encodeURIComponent(address);
+            try {
+                const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodedAddress}`);
+                const data = await response.json();
+                if (data && data[0]) {
+                    return L.latLng(data[0].lat, data[0].lon);
+                } else {
+                    console.log('Nenhum resultado encontrado');
+                    return null;
+                }
+            } catch (error) {
+                console.error('Erro ao obter coordenadas:', error);
+                return null;
+            }
         }
 
-        const street = step.street ? ` na rua ${step.street}` : '';
-        instruction += street;
-
-        if (instruction.includes(closestInstruction)) {
-            instruction = `<strong>${instruction}</strong>`;
+        async function initializeRoute() {
+            destino = await getCoordinates(address);
+            if (destino) {
+                L.marker(destino).addTo(map).bindPopup('Destino');
+                getRoute();
+            }
         }
 
-        instructionList.innerHTML += `<li>${instruction}</li>`;
-    });
-}
+        async function getRoute() {
+            if (!destino) {
+                console.log('Destino não definido');
+                return;
+            }
 
-function findClosestInstruction(position, instructions) {
-    if (!instructions || instructions.length === 0) {
-        return '';
-    }
+            try {
+                const response = await fetch(`https://api.openrouteservice.org/v2/directions/foot-walking?api_key=${apiKey}&start=${cimol.lng},${cimol.lat}&end=${destino.lng},${destino.lat}`);
+                const data = await response.json();
 
-    // Implementar a lógica para encontrar a instrução mais próxima
-    // Exemplo simplificado
-    return instructions[0] ? instructions[0].instruction : ''; // Verificação adicional
-}
+                if (data.features && data.features.length > 0) {
+                    const routeCoords = data.features[0].geometry.coordinates;
+                    const instructions = data.features[0].properties.segments[0].steps;
+                    const latlngs = routeCoords.map(coord => [coord[1], coord[0]]);
+                    L.polyline(latlngs, { color: 'purple' }).addTo(map);
+                    updateInstructions(instructions);
+                } else {
+                    console.log('Nenhuma rota encontrada');
+                }
+            } catch (error) {
+                console.error('Erro ao obter rota:', error);
+            }
+        }
 
-// Função para atualizar a posição do usuário
-function updateUserPosition() {
-    if (navigator.geolocation) {
-        navigator.geolocation.watchPosition((position) => {
-            userLat = position.coords.latitude;
-            userLng = position.coords.longitude;
-            L.marker([userLat, userLng]).addTo(map).bindPopup('Você está aqui');
-            updateInstructions(instructions); // Atualiza as instruções com base na nova posição
+        function updateInstructions(instructions) {
+            const instructionList = document.getElementById('instruction-list');
+            instructionList.innerHTML = '';
+
+            instructions.forEach(step => {
+                let instruction = step.instruction.toLowerCase();
+                if (instruction.includes('turn right')) instruction = 'Vire à direita';
+                else if (instruction.includes('turn left')) instruction = 'Vire à esquerda';
+                else if (instruction.includes('continue straight')) instruction = 'Siga reto';
+                
+                const street = step.street ? ` na rua ${step.street}` : '';
+                instruction += street;
+                instructionList.innerHTML += `<li>${instruction}</li>`;
+            });
+        }
+
+        const toggleButton = document.getElementById('toggle-instructions');
+        const instructionsDiv = document.getElementById('instructions');
+        let instructionsVisible = false;
+
+        toggleButton.addEventListener('click', () => {
+            instructionsVisible = !instructionsVisible;
+            instructionsDiv.style.display = instructionsVisible ? 'block' : 'none';
+            toggleButton.innerHTML = `<i class="fas fa-chevron-${instructionsVisible ? 'down' : 'up'}"></i>`;
         });
-    } else {
-        alert('Geolocalização não é suportada por este navegador.');
-    }
-}
 
-let userLat, userLng;
-
-// Obtém o valor do input e faz a busca por coordenadas
-const inputElement = document.getElementById('Endereco');
-const address = inputElement.value;
-const encodedAddress = encodeURIComponent(address);
-
-fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodedAddress}`)
-    .then(response => response.json())
-    .then(data => {
-        if (data && data[0]) {
-            const latitude = data[0].lat;
-            const longitude = data[0].lon;
-            console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-            destino = L.latLng(latitude, longitude);
-            L.marker(destino).addTo(map).bindPopup('Destino');
-
-            // Chama getRoute após definir o destino
-            getRoute();
-        } else {
-            console.log('Nenhum resultado encontrado');
-        }
-    })
-    .catch(error => console.error('Erro ao obter coordenadas:', error));
-
-updateUserPosition();
-
-</script>
-
-
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="js/script.js"></script>
-
-
+        // Inicializa a rota ao carregar a página
+        initializeRoute();
+    </script>
 </body>
 </html>

@@ -6,7 +6,7 @@ use app\traits\Connection;
 class Comentario extends Base {
     use Connection;
     protected $table = 'comentario_restaurante';
-
+    
     public function getAll() {
         $sql = "SELECT 
                     comentario_restaurante.*, 

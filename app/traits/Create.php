@@ -2,9 +2,11 @@
 namespace app\traits;
 
 use PDOException;
+use app\database\models\Connection;
 
 trait Create 
 {
+    
     public function create(array $createFieldsAndValues)
     {
         try {
