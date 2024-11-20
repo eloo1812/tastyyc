@@ -18,6 +18,9 @@ EXPOSE 8080
 RUN echo "Listen 8080" >> /etc/apache2/ports.conf \
     && sed -i 's/80/8080/' /etc/apache2/sites-available/000-default.conf
 
+# Alterar o DocumentRoot para o diretório public
+RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /etc/apache2/sites-available/000-default.conf
+
 # Definir diretório de trabalho
 WORKDIR /var/www/html
 
