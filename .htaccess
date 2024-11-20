@@ -1,12 +1,12 @@
 # Ativa o mecanismo de reescrita de URL
 RewriteEngine On
 
-# Define o RewriteBase para o diretório raiz do subdomínio (geralmente / se é o diretório raiz)
+# Define o RewriteBase para o diretório raiz do subdomínio
 RewriteBase /
 
 # Ignora arquivos e diretórios existentes
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-# Redireciona todas as outras requisições para o index.php
-RewriteRule ^ /projeto/public/index.php [QSA,L]
+# Redireciona todas as requisições para o index.php, mas evita loop infinito
+RewriteRule ^(?!projeto/public/index.php).* /projeto/public/index.php [QSA,L]
