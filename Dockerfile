@@ -8,13 +8,13 @@ RUN apt-get install -y \
     libjpeg-dev \
     libfreetype6-dev \
     git \
-    libmysqlclient-dev
+    libmariadb-dev-compat
 
 # Instalar a extensão GD
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN docker-php-ext-install gd
 
-# Instalar a extensão do MySQL
+# Instalar a extensão do MySQL (PDO e PDO MySQL)
 RUN docker-php-ext-install pdo pdo_mysql
 
 # Habilitar mod_rewrite do Apache
