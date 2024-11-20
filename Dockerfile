@@ -1,3 +1,4 @@
+# Usar uma imagem oficial do PHP com o Apache
 FROM php:8.0-apache
 
 # Instalar dependências e extensões necessárias
@@ -18,4 +19,4 @@ COPY . .
 
 # Instalar dependências do Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && composer install
+    && composer install
