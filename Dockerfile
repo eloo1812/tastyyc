@@ -8,13 +8,24 @@ RUN apt-get install -y \
     libjpeg-dev \
     libfreetype6-dev \
     git \
-    libmariadb-dev-compat
+    wget \
+    gnupg \
+    lsb-release \
+    ca-certificates
+
+# Adicionar repositório MySQL
+RUN echo "deb http://repo.mysql.com/apt/debian/ $(lsb_release -cs) mysql-apt-config" > /etc/apt/sources.list.d/mysql.list
+RUN wget -q -O - https://repo.mysql.com/RPM-GPG-KEY-mysql | apt-key add -
+RUN apt-get update
+
+# Instalar pacotes do MySQL
+RUN apt-get install -y libmysqlclient-dev
 
 # Instalar a extensão GD
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN docker-php-ext-install gd
 
-# Instalar a extensão do MySQL (PDO e PDO MySQL)
+# Instalar a extensão PDO e PDO MySQL
 RUN docker-php-ext-install pdo pdo_mysql
 
 # Habilitar mod_rewrite do Apache
