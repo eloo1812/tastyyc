@@ -16,8 +16,8 @@ RUN apt-get install -y \
 # Adicionar repositório MySQL
 RUN echo "deb http://repo.mysql.com/apt/debian/ $(lsb_release -cs) mysql-apt-config" > /etc/apt/sources.list.d/mysql.list
 
-# Baixar e adicionar a chave pública do MySQL corretamente
-RUN wget -q -O - https://repo.mysql.com/RPM-GPG-KEY-mysql | apt-key add -
+# Baixar e adicionar a chave pública do MySQL diretamente no diretório de chaves do sistema
+RUN curl -fsSL https://repo.mysql.com/RPM-GPG-KEY-mysql | tee /etc/apt/trusted.gpg.d/mysql.asc
 
 # Atualizar a lista de pacotes
 RUN apt-get update
