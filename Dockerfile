@@ -2,7 +2,8 @@
 FROM php:8.0-apache
 
 # Instalar dependências e extensões necessárias
-RUN apt-get update && apt-get install -y \
+RUN apt-get update \
+    && apt-get install -y \
     libpng-dev libjpeg-dev libfreetype6-dev \
     git \
     libmysqlclient-dev \  # Necessário para o MySQL
